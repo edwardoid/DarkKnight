@@ -23,5 +23,6 @@ FORMS    += DarkKnight.ui
 INCLUDEPATH += ./../Interfaces \
                ./../Framework \
                ./../Utils \
+               ./../Widgets
 
-LIBS += -L./../bin/ -lFramework -lInterfaces -lUtils
+LIBS += -L./../bin/ -lFramework -lInterfaces -lUtils -lWidgets

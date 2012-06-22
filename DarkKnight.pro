@@ -6,4 +6,5 @@ SUBDIRS += \
     Concepts \
     DataStores \
     Utils \
-    DarkKnight
+    DarkKnight \
+    Widgets

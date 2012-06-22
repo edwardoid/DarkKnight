@@ -1,7 +1,7 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#undef DEBUG
+#define DEBUG
 
 #define QQ(NAME) #NAME
 
