@@ -1,6 +1,6 @@
-[submodule "libchessengine"]
-	path = libchessengine
-	url = git@github.com:edwardoid/libchessengine.git
 [submodule "3rt_party/libchessengine"]
 	path = 3rt_party/libchessengine
 	url = git@github.com:edwardoid/libchessengine.git
+[submodule "3rt_party/cgsql"]
+	path = 3rt_party/cgsql
+	url = git@github.com:edwardoid/cgsql
