@@ -10,7 +10,6 @@ class SettingsPage;
 class Plugin : public QObject,
                public FrameworkUser
 {
-    Q_OBJECT
 public:
     typedef enum
     {

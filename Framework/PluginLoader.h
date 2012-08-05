@@ -7,6 +7,8 @@
 #include <QPluginLoader>
 #include <QObject>
 #include <QDebug>
+#include <Framework.h>
+#include <Logger.h>
 
 template<typename T>
 class PluginLoader
@@ -22,6 +24,7 @@ QMap<QString, T> PluginLoader<T>::load(QString dir)
     QDir pluginsDir = QDir(dir);
 
     foreach (QString fileName, pluginsDir.entryList(QDir::Files)) {
+
          QPluginLoader loader(pluginsDir.absoluteFilePath(fileName));
          QObject *plugin = loader.instance();
          if (plugin)
@@ -32,8 +35,10 @@ QMap<QString, T> PluginLoader<T>::load(QString dir)
                  loadedPlugins.insert(pluginInstance->name(),
                                       pluginInstance);
                  qDebug() << "Loaded : " << pluginInstance->name();
+                 Framework::instance()->logger()->log(QObject::tr("Loaded: %1").arg(pluginInstance->name()));
              }
          }
+         else Framework::instance()->logger()->log(QObject::tr("Error: %1").arg(loader.errorString()));
      }
     return loadedPlugins;
 }

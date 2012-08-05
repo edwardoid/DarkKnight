@@ -12,7 +12,7 @@ ChessBoard::~ChessBoard()
 
 }
 
-void ChessBoard::paintEvent(QPaintEvent *e)
+void ChessBoard::paintEvent(QPaintEvent *)
 {
     const int boardSize = qMin(height(), width());
     const int pieceSize = boardSize / 9;

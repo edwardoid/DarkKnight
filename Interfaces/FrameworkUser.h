@@ -7,8 +7,8 @@ class FrameworkUser
 {
 public:
     FrameworkUser();
-    void initWithFramework(Framework* fw);
-    Framework* framework();
+    virtual void initWithFramework(Framework* fw);
+    virtual Framework* framework() const;
 private:
     Framework* m_framework;
 };

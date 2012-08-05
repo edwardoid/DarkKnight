@@ -24,6 +24,7 @@ HEADERS += \
     DataStore.h \
     Concept.h \
     SettingsPage.h \
-    FrameworkUser.h
+    FrameworkUser.h \
+    Logger.h
 
 INCLUDEPATH += ./../Framework/

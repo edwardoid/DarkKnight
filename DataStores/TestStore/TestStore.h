@@ -7,6 +7,7 @@
 class TestStore: public DataStore
 {
     Q_OBJECT
+    Q_INTERFACES(Plugin)
 public:
     TestStore();
     virtual QString name() const;

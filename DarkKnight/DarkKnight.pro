@@ -13,10 +13,12 @@ DESTDIR = ./../bin
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
-        DarkKnight.cpp
+SOURCES += main.cpp \
+        DarkKnight.cpp \
+        SplashScreen.cpp
 
-HEADERS  += DarkKnight.h
+HEADERS  += DarkKnight.h \
+            SplashScreen.h
 
 FORMS    += DarkKnight.ui
 
@@ -26,3 +28,6 @@ INCLUDEPATH += ./../Interfaces \
                ./../Widgets
 
 LIBS += -L./../bin/ -lFramework -lInterfaces -lUtils -lWidgets
+
+RESOURCES += \
+    resources.qrc

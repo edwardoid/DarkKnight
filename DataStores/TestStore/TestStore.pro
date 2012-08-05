@@ -9,8 +9,7 @@ QT       -= gui
 TARGET = $$qtLibraryTarget(TestStore)
 DESTDIR = ./../../bin/datastores
 TEMPLATE = lib
-
-DEFINES += TESTSTORE_LIBRARY
+CONFIG += plugin
 
 SOURCES += TestStore.cpp
 

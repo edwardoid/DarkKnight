@@ -2,19 +2,20 @@
 #define DARKKNIGHT_H
 
 #include <QMainWindow>
+#include <Logger.h>
 
 namespace Ui {
 class DarkKnight;
 }
 
-class DarkKnight : public QMainWindow
+class DarkKnight : public QMainWindow, public Logger
 {
     Q_OBJECT
     
 public:
     explicit DarkKnight(QWidget *parent = 0);
-    ~DarkKnight();
-    
+    virtual ~DarkKnight();
+    virtual void log(const QString &mess);
 private:
     Ui::DarkKnight *ui;
 };
