@@ -15,12 +15,18 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
         DarkKnight.cpp \
-        SplashScreen.cpp
+        SplashScreen.cpp \
+    AboutDialog.cpp \
+    AuthorsDialog.cpp
 
 HEADERS  += DarkKnight.h \
-            SplashScreen.h
+            SplashScreen.h \
+    AboutDialog.h \
+    AuthorsDialog.h
 
-FORMS    += DarkKnight.ui
+FORMS    += DarkKnight.ui \
+    AboutDialog.ui \
+    AuthorsDialog.ui
 
 INCLUDEPATH += ./../Interfaces \
                ./../Framework \
