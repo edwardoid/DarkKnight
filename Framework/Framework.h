@@ -1,8 +1,9 @@
 #ifndef FRAMEWORK_H
 #define FRAMEWORK_H
 
-#define DATASTORES_DIR "datastores"
-#define CONCEPTS_DIR "concepts"
+#include <QCoreApplication>
+#define DATASTORES_DIR QCoreApplication::applicationDirPath() + "/datastores"
+#define CONCEPTS_DIR QCoreApplication::applicationDirPath() + "/concepts"
 
 #include <QMap>
 

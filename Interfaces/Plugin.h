@@ -5,7 +5,7 @@
 #include "FrameworkUser.h"
 
 class Framework;
-class SettingsPage;
+class SettingsPageBase;
 
 class Plugin : public QObject,
                public FrameworkUser
@@ -21,11 +21,11 @@ public:
     virtual QString name() const = 0;
     virtual QString version() const = 0;
     virtual QString author() const = 0;
-    SettingsPage* settingsPage() const;
+    inline SettingsPageBase* settingsPage() const { return m_settingsPage; }
 
     virtual ~Plugin() {}
-private:
-    SettingsPage* m_settingsPage;
+protected:
+    SettingsPageBase* m_settingsPage;
 };
 
 Q_DECLARE_INTERFACE(Plugin, "ssc.darkknight.plugin")

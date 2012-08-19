@@ -16,15 +16,15 @@ DEFINES += INTERFACES_LIBRARY
 SOURCES += \
     DataStore.cpp \
     Concept.cpp \
-    SettingsPage.cpp \
-    FrameworkUser.cpp
+    FrameworkUser.cpp \
+    SettingsPageBase.cpp
 
 HEADERS += \
     Plugin.h \
     DataStore.h \
     Concept.h \
-    SettingsPage.h \
     FrameworkUser.h \
-    Logger.h
+    Logger.h \
+    SettingsPageBase.h
 
 INCLUDEPATH += ./../Framework/

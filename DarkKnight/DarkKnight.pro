@@ -17,16 +17,19 @@ SOURCES += main.cpp \
         DarkKnight.cpp \
         SplashScreen.cpp \
     AboutDialog.cpp \
-    AuthorsDialog.cpp
+    AuthorsDialog.cpp \
+    SettingsDialog.cpp
 
 HEADERS  += DarkKnight.h \
             SplashScreen.h \
     AboutDialog.h \
-    AuthorsDialog.h
+    AuthorsDialog.h \
+    SettingsDialog.h
 
 FORMS    += DarkKnight.ui \
     AboutDialog.ui \
-    AuthorsDialog.ui
+    AuthorsDialog.ui \
+    SettingsDialog.ui
 
 INCLUDEPATH += ./../Interfaces \
                ./../Framework \

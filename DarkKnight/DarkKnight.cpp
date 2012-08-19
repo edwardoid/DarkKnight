@@ -1,5 +1,6 @@
 #include "DarkKnight.h"
 #include "ui_DarkKnight.h"
+#include "SettingsDialog.h"
 #include "AuthorsDialog.h"
 #include "AboutDialog.h"
 #include <QTime>
@@ -46,7 +47,9 @@ void DarkKnight::on_actionAuthors_triggered()
 
 void DarkKnight::on_actionSettings_triggered()
 {
-
+    SettingsDialog dlg(Framework::instance(), this);
+    if(QDialog::Accepted == dlg.exec())
+        dlg.writeSettings();
 }
 
 void DarkKnight::on_actionAddNewFeatures_triggered()

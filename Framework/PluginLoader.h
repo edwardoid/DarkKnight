@@ -7,7 +7,7 @@
 #include <QPluginLoader>
 #include <QObject>
 #include <QDebug>
-#include <Framework.h>
+#include "Framework.h"
 #include <Logger.h>
 
 template<typename T>
