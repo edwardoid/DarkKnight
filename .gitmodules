@@ -3,4 +3,4 @@
 	url = git@github.com:edwardoid/libchessengine.git
 [submodule "3rdparty/cgsql"]
 	path = 3rdparty/cgsql
-	url = git@github.com:edwardoid/cgsql.git
+	url = https://github.com/edwardoid/cgsql.git
