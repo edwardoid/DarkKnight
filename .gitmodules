@@ -1,6 +1,3 @@
-[submodule "3rt_party/cgsql"]
-	path = 3rt_party/cgsql
-	url = git@github.com:edwardoid/cgsql
 [submodule "3rdparty/libchessengine"]
 	path = 3rdparty/libchessengine
 	url = git@github.com:edwardoid/libchessengine.git
