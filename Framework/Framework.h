@@ -2,10 +2,11 @@
 #define FRAMEWORK_H
 
 #include <QCoreApplication>
+#include <QMap>
+
 #define DATASTORES_DIR QCoreApplication::applicationDirPath() + "/datastores"
 #define CONCEPTS_DIR QCoreApplication::applicationDirPath() + "/concepts"
 
-#include <QMap>
 
 class Settings;
 class Concept;

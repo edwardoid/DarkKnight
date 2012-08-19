@@ -1,8 +1,8 @@
 #include "SettingsDialog.h"
-#include "ui_SettingsDialog.h"
 #include "Framework.h"
 #include "Concept.h"
 #include "DataStore.h"
+#include "ui_SettingsDialog.h"
 #include <SettingsPageBase.h>
 
 SettingsDialog::SettingsDialog(Framework* framework, QWidget *parent) :

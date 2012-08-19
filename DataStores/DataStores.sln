@@ -1,8 +1,8 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestStore", "D:/Private/Masters/DarkKnight/DataStores/TestStore\TestStore.vcxproj", "{EDF6FC81-C940-3D32-9E17-608421EBA4F3}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestStore", "D:/Private/Masters/qq/DarkKnight/DataStores/TestStore\TestStore.vcxproj", "{25D1217B-1E4F-3CD7-A754-F77DB2609194}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FilesystemPlugin", "D:/Private/Masters/DarkKnight/DataStores/FilesystemStore\FilesystemPlugin.vcxproj", "{9BC91F71-481D-31FB-980B-06839AC7D171}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FilesystemPlugin", "D:/Private/Masters/qq/DarkKnight/DataStores/FilesystemStore\FilesystemPlugin.vcxproj", "{ED7C1588-AC95-38D3-8126-E0AB4768E1FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
@@ -12,14 +12,14 @@ Global
 	GlobalSection(ProjectDependencies) = postSolution
 	EndGlobalSection
 	GlobalSection(ProjectConfiguration) = postSolution
-		{EDF6FC81-C940-3D32-9E17-608421EBA4F3}.Debug|Win32.ActiveCfg = Debug|Win32
-		{EDF6FC81-C940-3D32-9E17-608421EBA4F3}.Debug|Win32.Build.0 = Debug|Win32
-		{EDF6FC81-C940-3D32-9E17-608421EBA4F3}.Release|Win32.ActiveCfg = Release|Win32
-		{EDF6FC81-C940-3D32-9E17-608421EBA4F3}.Release|Win32.Build.0 = Release|Win32
-		{9BC91F71-481D-31FB-980B-06839AC7D171}.Debug|Win32.ActiveCfg = Debug|Win32
-		{9BC91F71-481D-31FB-980B-06839AC7D171}.Debug|Win32.Build.0 = Debug|Win32
-		{9BC91F71-481D-31FB-980B-06839AC7D171}.Release|Win32.ActiveCfg = Release|Win32
-		{9BC91F71-481D-31FB-980B-06839AC7D171}.Release|Win32.Build.0 = Release|Win32
+		{25D1217B-1E4F-3CD7-A754-F77DB2609194}.Debug|Win32.ActiveCfg = Debug|Win32
+		{25D1217B-1E4F-3CD7-A754-F77DB2609194}.Debug|Win32.Build.0 = Debug|Win32
+		{25D1217B-1E4F-3CD7-A754-F77DB2609194}.Release|Win32.ActiveCfg = Release|Win32
+		{25D1217B-1E4F-3CD7-A754-F77DB2609194}.Release|Win32.Build.0 = Release|Win32
+		{ED7C1588-AC95-38D3-8126-E0AB4768E1FC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{ED7C1588-AC95-38D3-8126-E0AB4768E1FC}.Debug|Win32.Build.0 = Debug|Win32
+		{ED7C1588-AC95-38D3-8126-E0AB4768E1FC}.Release|Win32.ActiveCfg = Release|Win32
+		{ED7C1588-AC95-38D3-8126-E0AB4768E1FC}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection

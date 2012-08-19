@@ -2,7 +2,7 @@
 #include <SettingsPageBase.h>
 #include "SettingsPage.h"
 
-#include <PGNSquare.h>
+//#include <PGNSquare.h>
 
 FilesystemStore::FilesystemStore()
 {
