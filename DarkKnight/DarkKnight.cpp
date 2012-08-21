@@ -3,6 +3,7 @@
 #include "SettingsDialog.h"
 #include "AuthorsDialog.h"
 #include "AboutDialog.h"
+#include "QueryWizard.h"
 #include <QTime>
 #include <Utils.h>
 
@@ -25,7 +26,8 @@ DarkKnight::~DarkKnight()
 
 void DarkKnight::on_actionQuery_triggered()
 {
-
+	QueryWizard wizard(this);
+	wizard.exec();
 }
 
 void DarkKnight::on_actionExit_triggered()

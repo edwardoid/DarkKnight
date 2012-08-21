@@ -1,7 +1,9 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 
-class Settings
+#include "FrameworkGlobal.h"
+
+class FRAMEWORK_EXPORT Settings
 {
 public:
     Settings();

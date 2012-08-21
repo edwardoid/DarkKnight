@@ -1,6 +1,7 @@
 #ifndef FRAMEWORK_H
 #define FRAMEWORK_H
 
+#include "FrameworkGlobal.h"
 #include <QCoreApplication>
 #include <QMap>
 
@@ -16,7 +17,7 @@ class Logger;
 typedef QMap<QString, DataStore*> DataStoresList;
 typedef QMap<QString, Concept*> ConceptsList;
 
-class Framework
+class FRAMEWORK_EXPORT Framework
 {
 public:
     static Framework* instance();

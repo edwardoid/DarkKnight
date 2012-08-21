@@ -1,9 +1,10 @@
 #ifndef FRAMEWORKUSER_H
 #define FRAMEWORKUSER_H
 
+#include "InterfacesGlobal.h"
 class Framework;
 
-class FrameworkUser
+class EXPORT_INTERFACES FrameworkUser
 {
 public:
     FrameworkUser();

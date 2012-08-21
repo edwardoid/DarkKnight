@@ -9,7 +9,7 @@
 #ifdef DEBUG
 #include "AssertDialog.h"
 #define ASSERT(EXP)\
-	if(!EXP) \
+	if(!(EXP)) \
 	{ \
 	AssertDialog dlg(QQ(EXP), __LINE__, __FILE__ );\
 		dlg.exec(); \

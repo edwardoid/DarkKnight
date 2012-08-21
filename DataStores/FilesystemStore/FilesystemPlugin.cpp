@@ -2,13 +2,13 @@
 #include <SettingsPageBase.h>
 #include "SettingsPage.h"
 
-//#include <PGNSquare.h>
+#include <PGNSquare.h>
 
 FilesystemStore::FilesystemStore()
 {
     m_settingsPage = new SettingsPage(0);
 
-	//pgn::Square f;
+	pgn::Square f;
 	//ChEngn::RookMove rm(0, true);
 }
 
