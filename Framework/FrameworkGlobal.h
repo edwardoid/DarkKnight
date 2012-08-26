@@ -1,10 +1,12 @@
 #ifndef FRAMEWORKGLOBALS_H
 #define FRAMEWORKGLOBALS_H
 
-#ifdef _MSC_VER
-#define FRAMEWORK_EXPORT __declspec(dllexport)
+#include <QtGlobal>
+
+#ifndef FRAMEWORK_EXPORT
+#define FRAMEWORK_EXPORT Q_DECL_EXPORT
 #else
 #define FRAMEWORK_EXPORT
-#endif 
+#endif
 
 #endif // FRAMEWORKGLOBALS_H

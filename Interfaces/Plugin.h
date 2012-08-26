@@ -1,14 +1,15 @@
 #ifndef PLUGIN_H
 #define PLUGIN_H
 
+#include "InterfacesGlobal.h"
 #include <QObject>
 #include "FrameworkUser.h"
 
 class Framework;
 class SettingsPageBase;
 
-class Plugin : public QObject,
-               public FrameworkUser
+class EXPORT_INTERFACES Plugin : public QObject,
+								 public FrameworkUser
 {
 public:
     typedef enum

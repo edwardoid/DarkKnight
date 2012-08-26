@@ -4,7 +4,7 @@
 #include <DataStore.h>
 #include <QtCore/QtPlugin>
 
-class FilesystemStore: public DataStore
+class Q_DECL_EXPORT FilesystemStore: public DataStore
 {
     Q_OBJECT
     Q_INTERFACES(Plugin)

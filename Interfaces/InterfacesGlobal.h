@@ -1,10 +1,12 @@
 #ifndef INTERFACESGLOBALS_H 
 #define INTERFACESGLOBALS_H 
 
-#ifdef _MSC_VER
-#define EXPORT_INTERFACES __declspec(dllexport)
+#include <QtCore/qglobal.h>
+
+#ifdef INTERFACES_LIB
+# define EXPORT_INTERFACES Q_DECL_EXPORT
 #else
-#define EXPORT_INTERFACES
+# define EXPORT_INTERFACES Q_DECL_IMPORT
 #endif
 
 #endif // INTERFACESGLOBALS_H 

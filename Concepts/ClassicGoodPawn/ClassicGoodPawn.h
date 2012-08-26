@@ -14,7 +14,6 @@ public:
 	virtual QString name() const;
 	virtual QString version() const;
 	virtual QString author() const;
-	bool open();
 };
 
 #endif // CLASSICGOODPAWN_H

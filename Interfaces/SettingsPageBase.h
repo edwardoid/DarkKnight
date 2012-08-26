@@ -1,14 +1,14 @@
 #ifndef SETTINGSPAGEBASEBASE_H
 #define SETTINGSPAGEBASEBASE_H
 
-#include <QWidget>
+#include "InterfacesGlobal.h"
 #include "FrameworkUser.h"
+#include <QWidget>
 
 class Settings;
 class Framework;
 
-class SettingsPageBase : public QWidget,
-                         public FrameworkUser
+class EXPORT_INTERFACES SettingsPageBase : public QWidget, public FrameworkUser
 {
     Q_OBJECT
 public:
