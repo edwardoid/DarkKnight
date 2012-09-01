@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Search games</string>
   </property>
-  <widget class="QWizardPage" name="chooseStorePage">
+  <widget class="StoreChooseWizardPage" name="chooseStorePage">
    <property name="title">
     <string>Choose store</string>
    </property>
@@ -23,29 +23,46 @@
    <attribute name="pageId">
     <string notr="true">0</string>
    </attribute>
-   <layout class="QHBoxLayout" name="horizontalLayout" stretch="3,4">
-    <item>
-     <widget class="QListWidget" name="storesListWidget"/>
-    </item>
-    <item>
-     <widget class="QGroupBox" name="groupBox">
-      <property name="title">
-       <string>Information</string>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
-       <item>
-        <widget class="QLabel" name="infoLabel">
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
-   </layout>
+   <layout class="QHBoxLayout" name="horizontalLayout" stretch=""/>
+  </widget>
+  <widget class="AdvancedQueryPage" name="advancedQueryPage">
+   <property name="title">
+    <string>Query text</string>
+   </property>
+   <property name="subTitle">
+    <string>Enter query text using CGSQL syntax</string>
+   </property>
+  </widget>
+  <widget class="QueryFinishWizardPage" name="finalPage">
+   <property name="title">
+    <string>Executing query</string>
+   </property>
+   <property name="subTitle">
+    <string>Please be patient. This action can take a few minutes...</string>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout"/>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>AdvancedQueryPage</class>
+   <extends>QWizardPage</extends>
+   <header>AdvancedQueryPage.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>QueryFinishWizardPage</class>
+   <extends>QWizardPage</extends>
+   <header>QueryFinishWizardPage.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>StoreChooseWizardPage</class>
+   <extends>QWizardPage</extends>
+   <header>StoreChooseWizardPage.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

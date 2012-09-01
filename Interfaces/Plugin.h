@@ -23,10 +23,12 @@ public:
     virtual QString version() const = 0;
     virtual QString author() const = 0;
     inline SettingsPageBase* settingsPage() const { return m_settingsPage; }
-
+	inline void setId(const quint32 id) { m_id = id; };
+	inline quint32 id() const { return m_id; };
     virtual ~Plugin() {}
 protected:
     SettingsPageBase* m_settingsPage;
+	quint32 m_id;
 };
 
 Q_DECLARE_INTERFACE(Plugin, "ssc.darkknight.plugin")

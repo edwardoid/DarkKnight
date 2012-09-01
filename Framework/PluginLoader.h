@@ -1,7 +1,7 @@
 #ifndef PLUGINLOADER_H
 #define PLUGINLOADER_H
 
-#include <QMap>
+#include <QList>
 #include <QString>
 #include <QDir>
 #include <QPluginLoader>
@@ -14,13 +14,13 @@ template<typename T>
 class PluginLoader
 {
 public:
-    static QMap<QString, T> load(QString dir);
+    static QList<T> load(QString dir);
 };
 
 template<typename T>
-QMap<QString, T> PluginLoader<T>::load(QString dir)
+QList<T> PluginLoader<T>::load(QString dir)
 {
-    QMap<QString, T> loadedPlugins;
+    QList<T> loadedPlugins;
     QDir pluginsDir = QDir(dir);
 
     foreach (QString fileName, pluginsDir.entryList(QDir::Files)) {
@@ -32,8 +32,7 @@ QMap<QString, T> PluginLoader<T>::load(QString dir)
              T pluginInstance = dynamic_cast<T>(plugin);
              if(pluginInstance)
              {
-                 loadedPlugins.insert(pluginInstance->name(),
-                                      pluginInstance);
+                 loadedPlugins << pluginInstance;
                  qDebug() << "Loaded : " << pluginInstance->name();
                  Framework::instance()->logger()->log(QObject::tr("Loaded: %1").arg(pluginInstance->name()));
              }

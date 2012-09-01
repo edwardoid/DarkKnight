@@ -1,10 +1,10 @@
-#include "Concept.h"
+#include "ConceptPlugin.h"
 
-Concept::Concept()
+ConceptPlugin::ConceptPlugin()
 {
 }
 
-Plugin::Type Concept::type() const
+Plugin::Type ConceptPlugin::type() const
 {
     return Plugin::Concept;
 }

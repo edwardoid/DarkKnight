@@ -7,6 +7,10 @@
 
 
 #ifdef DEBUG
+#ifdef ASSERT // Force define GUI-assertions
+#undef ASSERT
+#endif
+
 #include "AssertDialog.h"
 #define ASSERT(EXP)\
 	if(!(EXP)) \

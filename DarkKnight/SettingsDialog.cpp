@@ -1,6 +1,6 @@
 #include "SettingsDialog.h"
 #include "Framework.h"
-#include "Concept.h"
+#include "ConceptPlugin.h"
 #include "DataStore.h"
 #include "ui_SettingsDialog.h"
 #include <SettingsPageBase.h>
@@ -23,7 +23,7 @@ void SettingsDialog::readSettings()
 {
     Framework* fw = framework();
     ConceptsList concepts = fw->concepts();
-    foreach(Concept* c, concepts)
+    foreach(ConceptPlugin* c, concepts)
     {
         SettingsPageBase* page = c->settingsPage();
         if(page)

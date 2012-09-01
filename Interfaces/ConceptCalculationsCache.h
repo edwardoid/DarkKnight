@@ -5,7 +5,7 @@
 #include "CalculationResultForGame.h"
 #include <QMap>
 
-class Concept;
+class ConceptPlugin;
 
 class EXPORT_INTERFACES ConceptCalculationsCache
 {

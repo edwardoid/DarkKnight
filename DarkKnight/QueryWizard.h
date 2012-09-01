@@ -16,12 +16,8 @@ class QueryWizard :
 public:
 	QueryWizard(QWidget* parent = NULL);
 	virtual ~QueryWizard(void);
-private slots:
-	void currentStoreChanged(QListWidgetItem*, QListWidgetItem*);
 private:
-	void populateDataStores();
-private:
-	Ui::QueryWizard* ui;
+	Ui::QueryWizard* ui;;
 };
 
 #endif // QUERYWIZARD_H

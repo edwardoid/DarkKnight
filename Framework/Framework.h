@@ -3,19 +3,18 @@
 
 #include "FrameworkGlobal.h"
 #include <QCoreApplication>
-#include <QMap>
 
 #define DATASTORES_DIR QCoreApplication::applicationDirPath() + "/datastores"
 #define CONCEPTS_DIR QCoreApplication::applicationDirPath() + "/concepts"
 
 
 class Settings;
-class Concept;
+class ConceptPlugin;
 class DataStore;
 class Logger;
 
-typedef QMap<QString, DataStore*> DataStoresList;
-typedef QMap<QString, Concept*> ConceptsList;
+typedef QList<DataStore*> DataStoresList;
+typedef QList<ConceptPlugin*> ConceptsList;
 
 class FRAMEWORK_EXPORT Framework
 {
@@ -28,6 +27,8 @@ public:
     Settings* settings() const;
     void setLogger(Logger* logger);
     Logger* logger() const;
+	const ConceptPlugin* conceptById(quint32 id) const;
+	const DataStore* dataStoreById(quint32 id) const;
     const ConceptsList& concepts() const;
     const DataStoresList& dataStores() const;
 private:
@@ -38,6 +39,7 @@ private:
     Settings* m_settings;
     DataStoresList m_stores;
     ConceptsList m_concepts;
+	static quint32 m_idEnumerator;
 };
 
 #endif // FRAMEWORK_H

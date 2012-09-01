@@ -1,11 +1,12 @@
 #include "Framework.h"
 #include "Settings.h"
 #include "PluginLoader.h"
-
+#include <QProgressBar>
 #include <DataStore.h>
-#include <Concept.h>
+#include <ConceptPlugin.h>
 #include <Logger.h>
 
+quint32 Framework::m_idEnumerator = 1;
 Framework* Framework::m_instance = NULL;
 
 Framework::Framework()
@@ -47,12 +48,20 @@ const DataStoresList& Framework::dataStores() const
 
 void Framework::loadConcepts()
 {
-    m_concepts = PluginLoader<Concept*>::load(CONCEPTS_DIR);
+    m_concepts = PluginLoader<ConceptPlugin*>::load(CONCEPTS_DIR);
+	foreach(ConceptPlugin* c, m_concepts)
+	{
+		c->setId(++m_idEnumerator);
+	}
 }
 
 void Framework::loadDataStores()
 {
     m_stores = PluginLoader<DataStore*>::load(DATASTORES_DIR);
+	foreach(DataStore* s, m_stores)
+	{
+		s->setId(++m_idEnumerator);
+	}
 }
 
 void Framework::initConcepts()
@@ -60,7 +69,7 @@ void Framework::initConcepts()
     ConceptsList::iterator it = m_concepts.begin();
     while(it != m_concepts.end())
     {
-        Concept* c = *it;
+        ConceptPlugin* c = *it;
         c->initWithFramework(this);
         ++it;
     }
@@ -75,4 +84,30 @@ void Framework::initDataStores()
         s->initWithFramework(this);
         ++it;
     }
+}
+
+const ConceptPlugin* Framework::conceptById(quint32 id) const
+{
+	foreach(ConceptPlugin* c, m_concepts)
+	{
+		if (c->id() == id)
+		{
+			return c;
+		}
+		
+	}
+	return NULL;
+}
+
+const DataStore* Framework::dataStoreById(quint32 id) const
+{
+	foreach(DataStore* s, m_stores)
+	{
+		if (s->id() == id)
+		{
+			return s;
+		}
+
+	}
+	return NULL;
 }
