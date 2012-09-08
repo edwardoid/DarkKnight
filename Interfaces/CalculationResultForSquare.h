@@ -20,7 +20,7 @@ public:
 	QString comment() const;
 	void setInternalValue(const InternalValue internalValue);
 	InternalValue internalValue() const;
-	bool undefined() const;
+	inline bool undefined() const { return m_undefined; }
 private:
 	QString m_textValue;
 	QString m_comment;

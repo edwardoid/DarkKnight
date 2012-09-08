@@ -49,7 +49,7 @@ CalculationResultForTable ClassicGoodPawn::calculateForTable(const ChEngn::Virtu
 	CalculationResultForTable res;
 	for (char c = 'a'; c <= 'h'; ++c)
 	{
-		for (char r = 0; r <= 8; ++r)
+		for (char r = '1'; r <= '8'; ++r)
 		{
 			const ChEngn::Piece* piece = table.pieceAtC(c, r);
 			ASSERT(NULL != piece);
@@ -57,12 +57,13 @@ CalculationResultForTable ClassicGoodPawn::calculateForTable(const ChEngn::Virtu
 			{
 				res.setSquareValue((piece->isWhite() ? CalculationResultForTable::Whites : CalculationResultForTable::Blacks),
 									(short)(c - 'a'),
-									(short)r,
+									(short)(r - '1'),
 									calculateForPawn(pgn::Square(c, r), table));
 				return res;
 			}
 		}
 	}
+	return res;
 }
 
 CalculationResultForSquare ClassicGoodPawn::calculateForPawn(const pgn::Square& square, const ChEngn::VirtualTable& table) const
@@ -81,6 +82,7 @@ CalculationResultForSquare ClassicGoodPawn::calculateForPawn(const pgn::Square& 
 		const ChEngn::Piece* left = table.pieceAtC(col -1, row);
 		const ChEngn::Piece* right = table.pieceAtC(col +1, row);
 		const ChEngn::Piece* center = table.pieceAtC(col, row);
+		if (!left || !right || !center) continue;
 		if((left->color() != piece->color()) ||
 		   (right->color() != piece->color()) ||
 		   (center->color() != piece->color()))

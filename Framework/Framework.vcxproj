@@ -138,7 +138,7 @@
       <WarningLevel>Level3</WarningLevel>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>Interfaces.lib;libpgnm.lib;$(QTDIR)\lib\QtCored4.lib;QtGuid4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libpgnm.lib;cgsql.lib;Interfaces.lib;$(QTDIR)\lib\QtCored4.lib;QtGuid4.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(QTDIR)\lib;$(SolutionDir)\bin\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreImportLibrary>true</IgnoreImportLibrary>
@@ -226,11 +226,13 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CalculationData.cpp" />
     <ClCompile Include="Framework.cpp" />
     <ClCompile Include="PluginLoader.cpp" />
     <ClCompile Include="Settings.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CalculationData.h" />
     <ClInclude Include="Framework.h" />
     <ClInclude Include="FrameworkGlobal.h" />
     <ClInclude Include="PluginLoader.h" />

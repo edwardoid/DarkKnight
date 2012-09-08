@@ -65,7 +65,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\bin\$(Configuration)</OutDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)\bin\$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)\bin\$(Configuration)</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\$(Configuration)\$(ProjectName)</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)\$(Configuration)\$(ProjectName)</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">DarkKnight</TargetName>
@@ -145,7 +145,7 @@
       <AdditionalDependencies>$(QTDIR)\lib\qtmaind.lib;$(QTDIR)\lib\QtGuid4.lib;$(QTDIR)\lib\QtCored4.lib;Framework.lib;Interfaces.lib;Widgets.lib;Utils.lib;libpgnm.lib;libchessengine.lib;cgsql.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreImportLibrary>true</IgnoreImportLibrary>
-      <OutputFile>$(SolutionDir)\bin\$(Configuration)\DarkKnight.exe</OutputFile>
+      <OutputFile>$(OutDir)\DarkKnight.exe</OutputFile>
       <SubSystem>Windows</SubSystem>
       <SuppressStartupBanner>
       </SuppressStartupBanner>
@@ -274,6 +274,7 @@
     <ClCompile Include="GeneratedFiles\qrc_resources.cpp" />
     <ClCompile Include="QueryEvaluationThread.cpp" />
     <ClCompile Include="QueryFinishWizardPage.cpp" />
+    <ClCompile Include="QueryResult.cpp" />
     <ClCompile Include="QueryWizard.cpp" />
     <ClCompile Include="Release\moc_AboutDialog.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -592,6 +593,7 @@
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_StoreChooseWizardPage.h" />
     <ClInclude Include="QueryEvaluationThread.h" />
+    <ClInclude Include="QueryResult.h" />
     <CustomBuild Include="StoreChooseWizardPage.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing StoreChooseWizardPage.h...</Message>

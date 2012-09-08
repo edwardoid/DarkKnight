@@ -3,12 +3,17 @@
 
 CalculationResultForSquare::CalculationResultForSquare()
 	: m_undefined(true)
+	, m_textValue("undefined")
+	, m_comment("")
 {
 }
 
 CalculationResultForSquare::CalculationResultForSquare(const CalculationResultForSquare& other)
 {
-	*this = other;
+	if (!other.undefined())
+	{
+		*this = other;
+	}
 }
 
 CalculationResultForSquare& CalculationResultForSquare::operator=(const CalculationResultForSquare& other)

@@ -7,6 +7,7 @@
 #include <PGNFile.h>
 #include <QFileDialog>
 #include <Utils.h>
+#include <CalculationData.h>
 #include <Framework.h>
 #include <Logger.h>
 #include "SettingsPage.h"
@@ -47,7 +48,7 @@ bool FilesystemStore::load( CGSQL_NS::RootNode* root, pgn::GameCollection& games
 		return false;
 	}
 
-	const CGSQL_NS::Body* body = root->body();
+	const CGSQL_NS::Body* header = root->header();
 	
 	pgn::File pgnFile(strFilePath.toAscii().constData());
 	pgn::GameCollection allGames = pgnFile.games();
@@ -59,7 +60,8 @@ bool FilesystemStore::load( CGSQL_NS::RootNode* root, pgn::GameCollection& games
 		++it)
 	{
 		const pgn::Game& g = (*it);
-		if (body->accept(&g))
+		CalculationData arg(&g);
+		if (header->accept(&arg))
 		{
 			games.insert(g);
 		}

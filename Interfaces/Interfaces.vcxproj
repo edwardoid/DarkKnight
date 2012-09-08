@@ -195,7 +195,7 @@
     <ClCompile Include="CalculationResultForGame.cpp" />
     <ClCompile Include="CalculationResultForSquare.cpp" />
     <ClCompile Include="CalculationResultForTable.cpp" />
-    <ClCompile Include="Concept.cpp" />
+    <ClCompile Include="ConceptPugin.cpp" />
     <ClCompile Include="ConceptCalculationsCache.cpp" />
     <ClCompile Include="DataStore.cpp" />
     <ClCompile Include="FrameworkUser.cpp" />

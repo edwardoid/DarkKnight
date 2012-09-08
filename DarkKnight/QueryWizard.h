@@ -2,6 +2,7 @@
 #define QUERYWIZARD_H
 
 #include <QWizard>
+#include "QueryResult.h"
 
 namespace Ui {
 	class QueryWizard;
@@ -14,7 +15,7 @@ class QueryWizard :
 {
 	Q_OBJECT
 public:
-	QueryWizard(QWidget* parent = NULL);
+	explicit QueryWizard(QueryResult* data, QWidget* parent = NULL);
 	virtual ~QueryWizard(void);
 private:
 	Ui::QueryWizard* ui;;

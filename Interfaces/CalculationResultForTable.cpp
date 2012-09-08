@@ -15,7 +15,13 @@ CalculationResultForTable::CalculationResultForTable()
 
 CalculationResultForTable::CalculationResultForTable(const CalculationResultForTable& other)
 {
-	CalculationResultForTable();
+	m_whitesTable = new CalculationResultForSquare* [8];
+	m_blacksTable = new CalculationResultForSquare* [8];
+	for (short col = 0; col< 8; ++col)
+	{
+		m_whitesTable[col] = new CalculationResultForSquare[8];
+		m_blacksTable[col] = new CalculationResultForSquare[8];
+	}
 	*this = other;
 }
 
@@ -37,9 +43,12 @@ void CalculationResultForTable::setSquareValue(const CalculationResultForTable::
 											   const short row,
 											   const CalculationResultForSquare value)
 {
-	ASSERT(column >= 8 || row >= 8 || column < 0 || row < 0);
+	ASSERT(column < 8 || row < 8 || column >= 0 || row >= 0);
 	CalculationResultForSquare& square = ((color != Blacks) ? m_whitesTable[row][column] : m_blacksTable[row][column]);
-	square = value;
+	if (!value.undefined())
+	{
+		square = value;
+	}
 }
 
 const CalculationResultForSquare& CalculationResultForTable::squareValue(const CalculationResultForTable::Color color,

@@ -3,6 +3,7 @@
 #include <DataStore.h>
 #include <RootNode.h>
 #include <QueryParser.h>
+#include <CalculationData.h>
 
 QueryFinishWizardPage::QueryFinishWizardPage(QWidget *parent)
 	: QWizardPage(parent)
@@ -17,6 +18,7 @@ QueryFinishWizardPage::~QueryFinishWizardPage()
 
 void QueryFinishWizardPage::initializePage()
 {
+	m_result->clear();
 	ui.progressBar->setValue(0);
 	Framework* fw = framework();
 	setCurrentAction(tr("Collecting information..."));
@@ -42,6 +44,14 @@ void QueryFinishWizardPage::initializePage()
 		exit(-1);
 	}
 	setCurrentAction(tr("Loaded %1 games. Looking for concepts in its...").arg(loadedGames.size()));
+	for(pgn::GameCollection::iterator it = loadedGames.begin();
+		it != loadedGames.end();
+		++it)
+	{
+		m_result->data().addGame(&(*it));
+		if(root->body()->accept(&(m_result->data())))
+			m_result->games().insert(*it);
+	}
 	ui.progressBar->setValue(100);
 }
 

@@ -5,7 +5,7 @@
 #include <Framework.h>
 #include <DataStore.h>
 
-QueryWizard::QueryWizard(QWidget* parent /* = NULL */)
+QueryWizard::QueryWizard(QueryResult* result, QWidget* parent /* = NULL */)
 	: QWizard(parent)
 	, ui(new Ui::QueryWizard)
 {
@@ -13,6 +13,7 @@ QueryWizard::QueryWizard(QWidget* parent /* = NULL */)
 	Framework* fw = Framework::instance();
 	ui->chooseStorePage->initWithFramework(fw);
 	ui->finalPage->initWithFramework(fw);
+	ui->finalPage->setResultData(result);
 }
 
 

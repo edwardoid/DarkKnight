@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <Logger.h>
+#include "QueryResult.h"
 
 namespace Ui {
 class DarkKnight;
@@ -35,8 +36,13 @@ private slots:
 
     void on_actionGameExplorer_triggered();
 
+	void on_gamesCombo_currentIndexChanged(int index);
+private:
+	void enableContorls(bool enable);
+	void updateControlsInfo();
 private:
     Ui::DarkKnight *ui;
+	QueryResult m_data;
 };
 
 #endif // DARKKNIGHT_H
