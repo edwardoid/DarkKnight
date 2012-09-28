@@ -33,7 +33,7 @@ void QueryFinishWizardPage::initializePage()
 	if (root == NULL)
 	{
 		setCurrentAction("Error while parting query.");
-		exit(-1);
+		return;
 	}
 	pgn::GameCollection loadedGames;
 	setCurrentAction(tr("Retrieving games from %1...").arg(dataStore->name().toLower()));
@@ -41,7 +41,7 @@ void QueryFinishWizardPage::initializePage()
 	if(!loadResult)
 	{
 		setCurrentAction(tr("Can not load games from %1...").arg(dataStore->name().toLower()));
-		exit(-1);
+		return;
 	}
 	setCurrentAction(tr("Loaded %1 games. Looking for concepts in its...").arg(loadedGames.size()));
 	for(pgn::GameCollection::iterator it = loadedGames.begin();

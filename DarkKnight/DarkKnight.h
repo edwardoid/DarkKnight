@@ -37,6 +37,12 @@ private slots:
     void on_actionGameExplorer_triggered();
 
 	void on_gamesCombo_currentIndexChanged(int index);
+
+	void on_nextBttn_clicked();
+
+	void on_prevBttn_clicked();
+
+	void on_movesListWidget_currentRowChanged(int row);
 private:
 	void enableContorls(bool enable);
 	void updateControlsInfo();

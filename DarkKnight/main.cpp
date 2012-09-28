@@ -5,6 +5,7 @@
 
 int main(int argc, char *argv[])
 {
+	Q_INIT_RESOURCE(pieces);
 	QApplication a(argc, argv);
 	DarkKnight w;
     Framework::instance()->setLogger(&w);

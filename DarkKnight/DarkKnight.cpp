@@ -110,7 +110,7 @@ void DarkKnight::on_gamesCombo_currentIndexChanged(int index)
 	ui->movesListWidget->clear();
 	if (index < 0) return;
 	
-	const pgn::Game& game = m_data.games()[index];
+	pgn::Game& game = m_data.games()[index];
 	const pgn::MoveList& moves = game.moves();
 	for (pgn::MoveList::iterator it = moves.begin();
 		it != moves.end();
@@ -118,5 +118,33 @@ void DarkKnight::on_gamesCombo_currentIndexChanged(int index)
 	{
 		ui->movesListWidget->addItem(new QListWidgetItem(QString::fromStdString(it->toStdString())));
 	}
-	
+	ui->boardWidget->setGame(game);
 }	
+
+void DarkKnight::on_nextBttn_clicked()
+{
+	ui->movesListWidget->blockSignals(true);
+	ui->boardWidget->nextMove();
+	ui->movesListWidget->setCurrentRow(ui->boardWidget->currentMoveIndex() / 2  + ui->boardWidget->currentMoveIndex() % 2 - 1);
+	ui->movesListWidget->blockSignals(false);
+	ui->nextBttn->setEnabled(ui->boardWidget->nextMoveAvailable());
+	ui->prevBttn->setEnabled(ui->boardWidget->previousMoveAvailable());
+}
+
+void DarkKnight::on_prevBttn_clicked()
+{
+	ui->boardWidget->previousMove();
+	ui->movesListWidget->blockSignals(true);
+	ui->movesListWidget->setCurrentRow(ui->boardWidget->currentMoveIndex() / 2  + ui->boardWidget->currentMoveIndex() % 2 - 1);
+	ui->movesListWidget->blockSignals(false);
+	ui->nextBttn->setEnabled(ui->boardWidget->nextMoveAvailable());
+	ui->prevBttn->setEnabled(ui->boardWidget->previousMoveAvailable());
+}
+
+void DarkKnight::on_movesListWidget_currentRowChanged(int row)
+{
+	if(row < 0) return;
+	ui->boardWidget->setMove(row * 2);
+	ui->nextBttn->setEnabled(ui->boardWidget->nextMoveAvailable());
+	ui->prevBttn->setEnabled(ui->boardWidget->previousMoveAvailable());
+}
