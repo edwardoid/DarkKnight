@@ -58,7 +58,7 @@ TEST(evaluatingGame)
 	{
 		if(moveNum == 76)
 			int breakHere = 43;
-		printTableAndMove(engine, moves, moveNum++);
+//		printTableAndMove(engine, moves, moveNum++);
 #ifdef _WIN32
 //		system("pause");
 #endif
@@ -75,6 +75,7 @@ TEST(evaluatingGame)
 					<< ((moveNum % 2 == 0) ? "(whites)" : "(blacks)")
 					<< std::endl;
 		printTableAndMove(engine, moves, ++moveNum);
+		FAILED(-1);
 	}
 }
 
