@@ -11,7 +11,6 @@ SettingsDialog::SettingsDialog(Framework* framework, QWidget *parent) :
 {
     ui->setupUi(this);
     initWithFramework(framework);
-	readSettings();
 }
 
 SettingsDialog::~SettingsDialog()
@@ -35,11 +34,32 @@ void SettingsDialog::readSettings()
     {
         SettingsPageBase* page = d->settingsPage();
         if(page)
+		{
+			page->readSettings();
             ui->settingsTabWidget->addTab(page, d->name());
+		}
     }
 }
 
 void SettingsDialog::writeSettings()
 {
+	Framework* fw = framework();
+	ConceptsList concepts = fw->concepts();
+	foreach(ConceptPlugin* c, concepts)
+	{
+		SettingsPageBase* page = c->settingsPage();
+		if(page)
+			page->writeSettings();
+	}
 
+	DataStoresList datastores = fw->dataStores();
+	foreach(DataStore* d, datastores)
+	{
+		SettingsPageBase* page = d->settingsPage();
+		if(page)
+		{
+			page->writeSettings();
+		}
+	}
+	ui->settingsTabWidget->clear();
 }

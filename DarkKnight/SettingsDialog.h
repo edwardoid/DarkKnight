@@ -17,7 +17,6 @@ public:
     explicit SettingsDialog(Framework* fw = Framework::instance(), QWidget *parent = 0);
     ~SettingsDialog();
     void writeSettings();
-private:
     void readSettings();
 private:
     Ui::SettingsDialog *ui;
