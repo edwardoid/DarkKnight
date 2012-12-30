@@ -5,6 +5,7 @@ CalculationResultForSquare::CalculationResultForSquare()
 	: m_undefined(true)
 	, m_textValue("undefined")
 	, m_comment("")
+	, m_internalValue(-1.)
 {
 }
 
@@ -21,6 +22,7 @@ CalculationResultForSquare& CalculationResultForSquare::operator=(const Calculat
 	m_textValue = other.m_textValue;
 	m_comment = other.m_comment;
 	m_internalValue = other.m_internalValue;
+	m_undefined = other.m_undefined;
 	return *this;
 }
 
@@ -31,6 +33,7 @@ CalculationResultForSquare::~CalculationResultForSquare()
 void CalculationResultForSquare::setTextValue(const QString textValue)
 {
 	m_textValue = textValue;
+	m_undefined = false;
 }
 
 QString CalculationResultForSquare::textValue() const

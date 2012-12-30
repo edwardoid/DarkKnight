@@ -16,7 +16,7 @@ class EXPORT_INTERFACES DataStore : public Plugin
 {
 	Q_OBJECT
 public:
-    explicit DataStore();
+    DataStore();
     virtual Plugin::Type type() const;
 	virtual bool load(CGSQL_NS::RootNode* root, pgn::GameCollection& games) const = 0;
 };

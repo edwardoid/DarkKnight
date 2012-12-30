@@ -22,7 +22,8 @@ public:
 	InternalValue internalValue() const;
 	bool undefined() const;
 	void addTable(const CalculationResultForTable table);
-	CalculationResultForTable tableAt(const unsigned int) const;
+	const CalculationResultForTable& tableAt(const unsigned int) const;
+	inline int size() const { return m_tables.size(); }
 private:
 	QString m_textValue;
 	QString m_comment;

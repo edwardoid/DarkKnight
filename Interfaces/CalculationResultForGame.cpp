@@ -60,9 +60,10 @@ CalculationResultForGame::InternalValue CalculationResultForGame::internalValue(
 void CalculationResultForGame::addTable(const CalculationResultForTable table)
 {
 	m_tables << table;
+	m_undefined = false;
 }
 
-CalculationResultForTable CalculationResultForGame::tableAt(const unsigned int i) const
+const CalculationResultForTable& CalculationResultForGame::tableAt(const unsigned int i) const
 {
 	return m_tables[i];
 }

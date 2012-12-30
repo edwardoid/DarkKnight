@@ -6,22 +6,7 @@
 #include "Plugin.h"
 #include "CalculationResultForGame.h"
 #include <PGNGame.h>
-
-#define  CREATE_LING_VALUE(val) (LinguistingValue(val, QObject::tr(val)))
-
-struct EXPORT_INTERFACES LinguistingValue
-{
-	LinguistingValue(const char* intValue, QString presValue)
-	{
-		internalValue = intValue;
-		presentationValue = presValue;
-	}
-	const char* internalValue;
-	QString presentationValue;
-};
-
-typedef QList<LinguistingValue> LinguistingValuesArray;
-
+#include <LinguisticValue.h>
 
 class EXPORT_INTERFACES ConceptPlugin : public Plugin
 {
@@ -36,7 +21,7 @@ public:
 	} Color;
     ConceptPlugin();
     virtual Plugin::Type type() const;
-	virtual const LinguistingValuesArray& availableValues() const = 0;
+	virtual const ListofLinguisticValues& availableValues() const = 0;
 	virtual CalculationResultForGame calculate(const pgn::Game& game, const Color color) const = 0;
 };
 
