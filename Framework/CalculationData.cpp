@@ -15,26 +15,34 @@ CalculationData::~CalculationData()
 
 bool CalculationData::calculate( const char* conceptName, const char* requieredValue ) const
 {
-	qint32 conceptId = 0;
-	foreach(ConceptPlugin* plg, framework()->concepts())
+	Plugin::ID conceptId = 0;
+	ConceptPlugin* plg = NULL;
+	foreach(ConceptPlugin* nextPlg, framework()->concepts())
 	{
-		if (0 == plg->name().compare(conceptName, Qt::CaseInsensitive))
+		if (0 == nextPlg->name().compare(conceptName, Qt::CaseInsensitive))
 		{
-			conceptId = plg->id();
+			conceptId = nextPlg->id();
+			plg = nextPlg;
 		}
 	}
-	if (conceptId == 0) return false;
-	if(m_conceptToResult.contains(conceptId))
+	if (conceptId == 0 || plg == NULL) return false;
+
+	CalculationResultForGame* result = m_conceptToResult.result(conceptId);
+	if(NULL == result)
 	{
-		const CalculationResultForGame& result = m_conceptToResult[conceptId];
-		return result.textValue().compare(requieredValue, Qt::CaseInsensitive);
+		CalculationResultForGame calcResult = plg->calculate(*game(), ConceptPlugin::Whites);
+		m_conceptToResult.add(conceptId, calcResult);
+		result = &calcResult;
 	}
-	const ConceptPlugin* concept = framework()->conceptById(conceptId);
-	m_conceptToResult.insert(conceptId, concept->calculate(*game(), ConceptPlugin::Whites));
-	return true;
+	return result->textValue().compare(requieredValue, Qt::CaseInsensitive);
 }
 
 void CalculationData::addGame( const pgn::Game* game )
 {
 	m_game = game;
+}
+
+CalculationResultForGame* CalculationData::result( Plugin::ID id )
+{
+	return m_conceptToResult.result(id);
 }

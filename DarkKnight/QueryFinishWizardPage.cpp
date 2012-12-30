@@ -4,6 +4,7 @@
 #include <RootNode.h>
 #include <QueryParser.h>
 #include <CalculationData.h>
+#include <QtCore>
 
 QueryFinishWizardPage::QueryFinishWizardPage(QWidget *parent)
 	: QWizardPage(parent)

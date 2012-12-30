@@ -1,10 +1,11 @@
 #ifndef CALCULATIONDATA_H
 #define CALCULATIONDATA_H
 #include "FrameworkGlobal.h"
+#include <Plugin.h>
 #include <FrameworkUser.h>
 #include <AbstractCalculationData.h>
 #include <CalculationResultForGame.h>
-#include <QMap>
+#include <ConceptCalculationsCache.h>
 
 class FRAMEWORK_EXPORT CalculationData: public CGSQL_NS::AbstractCalculationData, public FrameworkUser
 {
@@ -15,8 +16,10 @@ public:
 	virtual ~CalculationData();
 	inline void clear()  { m_conceptToResult.clear(); };
 	inline bool isEmpty() const { return m_conceptToResult.isEmpty(); }
+	CalculationResultForGame* result(Plugin::ID id);
+	inline ConceptCalculationsCache* cache() { return &m_conceptToResult; }
 private:
-	mutable QMap<qint32, CalculationResultForGame> m_conceptToResult;
+	mutable ConceptCalculationsCache m_conceptToResult;
 };
 
 #endif // CALCULATIONDATA_H
