@@ -4,3 +4,6 @@
 [submodule "3rdparty/cgsql"]
 	path = 3rdparty/cgsql
 	url = https://github.com/edwardoid/cgsql.git
+[submodule "3rdparty/fuzzylib"]
+	path = 3rdparty/fuzzylib
+	url = git@github.com:edwardoid/fuzzylib.git
