@@ -1,11 +1,12 @@
 #include "ClassicGoodPawn.h"
 #include <CEEngine.h>
+#include <LinearCharacteristicFunction.h>
 #include <Utils.h>
 
 ClassicGoodPawn::ClassicGoodPawn()
 {
-	m_availableValues << CREATE_LING_VALUE("weak")
-					  << CREATE_LING_VALUE("strong");
+	m_availableValues.push_back(LinguisticValue("weak", new LinearCharacteristicFunction(Point(0, 1), Point(1, 0))));
+	m_availableValues.push_back(LinguisticValue("weak", new LinearCharacteristicFunction(Point(0, 0), Point(1, 1))));
 }
 
 ClassicGoodPawn::~ClassicGoodPawn()
@@ -28,7 +29,7 @@ QString ClassicGoodPawn::version() const
 	return "1.0";
 }
 
-const LinguistingValuesArray& ClassicGoodPawn::availableValues() const
+const ListofLinguisticValues& ClassicGoodPawn::availableValues() const
 {
 	return m_availableValues;
 }
@@ -59,7 +60,6 @@ CalculationResultForTable ClassicGoodPawn::calculateForTable(const ChEngn::Virtu
 									(short)(c - 'a'),
 									(short)(r - '1'),
 									calculateForPawn(pgn::Square(c, r), table));
-				return res;
 			}
 		}
 	}
@@ -69,7 +69,7 @@ CalculationResultForTable ClassicGoodPawn::calculateForTable(const ChEngn::Virtu
 CalculationResultForSquare ClassicGoodPawn::calculateForPawn(const pgn::Square& square, const ChEngn::VirtualTable& table) const
 {
 	CalculationResultForSquare res;
-	res.setInternalValue(1.);
+	res.setInternalValue(.5);
 	res.setTextValue("strong");
 	const ChEngn::Piece* piece = table.pieceAtC(square.col(), square.row());
 	ASSERT(piece->type() == ChEngn::pawn);
@@ -87,7 +87,7 @@ CalculationResultForSquare ClassicGoodPawn::calculateForPawn(const pgn::Square& 
 		   (right->color() != piece->color()) ||
 		   (center->color() != piece->color()))
 		{
-			res.setInternalValue(0.);
+			res.setInternalValue(.1);
 			res.setTextValue("weak");
 		}
 	}

@@ -18,13 +18,13 @@ public:
 	virtual QString name() const;
 	virtual QString version() const;
 	virtual QString author() const;
-	virtual const LinguistingValuesArray& availableValues() const;
+	virtual const ListofLinguisticValues& availableValues() const;
 	virtual CalculationResultForGame calculate(const pgn::Game& game, const Color color) const;
 private:
 	CalculationResultForTable calculateForTable(const ChEngn::VirtualTable& table) const;
 	CalculationResultForSquare calculateForPawn(const pgn::Square& square, const ChEngn::VirtualTable& table) const;
 private:
-	LinguistingValuesArray m_availableValues;
+	ListofLinguisticValues m_availableValues;
 };
 
 #endif // CLASSICGOODPAWN_H
