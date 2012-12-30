@@ -3,10 +3,10 @@
 
 #define DEBUG
 
-#define QQ(NAME) #NAME
-
+#include "Macro.h"
 
 #ifdef DEBUG
+
 #ifdef ASSERT // Force define GUI-assertions
 #undef ASSERT
 #endif
@@ -21,6 +21,5 @@
 #else
 #define ASSERT(EXP) {}
 #endif
-
 
 #endif // UTILS_H
