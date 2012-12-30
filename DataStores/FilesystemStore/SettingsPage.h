@@ -14,6 +14,8 @@ public:
     SettingsPage(QWidget* parent = NULL);
     virtual void readSettings();
     virtual void writeSettings();
+private slots:
+	void selectDBFile();
 private:
     Ui::SettingsPage *ui;
 };

@@ -15,6 +15,7 @@ public:
     virtual QString version() const;
     virtual QString author() const;
 	virtual bool load(CGSQL_NS::RootNode* root, pgn::GameCollection& games) const;
+	virtual void initWithFramework(Framework* fw);
 private:
 	bool acceptGame(CGSQL_NS::Body* body, const pgn::Game& game) const;
 };

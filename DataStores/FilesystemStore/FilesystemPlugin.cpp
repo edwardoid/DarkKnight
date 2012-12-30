@@ -9,8 +9,10 @@
 #include <Utils.h>
 #include <CalculationData.h>
 #include <Framework.h>
+#include <Settings.h>
 #include <Logger.h>
 #include "SettingsPage.h"
+#include "Constants.h"
 
 FilesystemStore::FilesystemStore()
 {
@@ -19,7 +21,7 @@ FilesystemStore::FilesystemStore()
 
 QString FilesystemStore::name() const
 {
-    return "Filesystem Store";
+    return PLUGIN_NAME;
 }
 
 QString FilesystemStore::version() const
@@ -34,17 +36,30 @@ QString FilesystemStore::author() const
 
 bool FilesystemStore::load( CGSQL_NS::RootNode* root, pgn::GameCollection& games ) const
 {
-	QString strFilePath = QFileDialog::getOpenFileName(0,
-													   tr("Select PGN file"),
-													   qApp->applicationDirPath(),
-													   tr("Games in Portable Game Notation (*.pgn)"));
+	QString strFilePath;
+	
+
+	Framework* f = framework();
+	Settings* s = f->settings();
+	bool bUseStaticDB = s->get(PLUGIN_NAME, USE_STATIC_DB, false).toBool();
+	
+	if (bUseStaticDB)
+	{
+		strFilePath = s->get(PLUGIN_NAME, STATIC_DB_FILE_PATH, QString()).toString();
+	}
+
+	if(!QFile::exists(strFilePath))
+		strFilePath = QFileDialog::getOpenFileName(0,
+												   tr("Select PGN file"),
+												   QDir::homePath(),
+												   tr("Games in Portable Game Notation (*.pgn)"));
 	ASSERT(NULL != root);
 
 	if(strFilePath.isEmpty()) return false;
 	
 	if(!QFile::exists(strFilePath))
 	{
-		framework()->logger()->log(tr("File %1 does not exists").arg(strFilePath));
+		f->logger()->log(tr("File %1 does not exists").arg(strFilePath));
 		return false;
 	}
 
@@ -52,9 +67,6 @@ bool FilesystemStore::load( CGSQL_NS::RootNode* root, pgn::GameCollection& games
 	
 	pgn::File pgnFile(strFilePath.toAscii().constData());
 	pgn::GameCollection allGames = pgnFile.games();
-	Framework* fw = framework();
-	int gamesSize = allGames.size();
-	int currGame = 0;
 	for(pgn::GameCollection::iterator it = allGames.begin();
 		it != allGames.end();
 		++it)
@@ -67,6 +79,12 @@ bool FilesystemStore::load( CGSQL_NS::RootNode* root, pgn::GameCollection& games
 		}
 	}
 	return true;
+}
+
+void FilesystemStore::initWithFramework( Framework* fw )
+{
+	m_settingsPage->initWithFramework(fw);
+	DataStore::initWithFramework(fw);
 }
 
 Q_EXPORT_PLUGIN2(filesystemStore, FilesystemStore)
