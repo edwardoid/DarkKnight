@@ -49,6 +49,7 @@ private:
 private:
     Ui::DarkKnight *ui;
 	QueryResult m_data;
+	class SettingsDialog* m_settingsDialog;
 };
 
 #endif // DARKKNIGHT_H

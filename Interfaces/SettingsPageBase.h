@@ -13,6 +13,8 @@ class EXPORT_INTERFACES SettingsPageBase : public QWidget, public FrameworkUser
     Q_OBJECT
 public:
     explicit SettingsPageBase(QWidget *parent = 0);
+	~SettingsPageBase() {
+	}
     virtual void readSettings() = 0;
     virtual void writeSettings() = 0;
 };

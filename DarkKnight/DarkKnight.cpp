@@ -13,7 +13,8 @@
 
 DarkKnight::DarkKnight(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::DarkKnight)
+    ui(new Ui::DarkKnight),
+	m_settingsDialog(NULL)
 {
     ui->setupUi(this);
 	m_data.data().initWithFramework(Framework::instance());
@@ -58,9 +59,11 @@ void DarkKnight::on_actionAuthors_triggered()
 
 void DarkKnight::on_actionSettings_triggered()
 {
-    SettingsDialog dlg(Framework::instance(), this);
-    if(QDialog::Accepted == dlg.exec())
-        dlg.writeSettings();
+	if(m_settingsDialog == NULL)
+		m_settingsDialog = new SettingsDialog(Framework::instance(), this);
+	m_settingsDialog->readSettings();
+    if(QDialog::Accepted == m_settingsDialog->exec())
+        m_settingsDialog->writeSettings();
 }
 
 void DarkKnight::on_actionAddNewFeatures_triggered()
@@ -119,6 +122,7 @@ void DarkKnight::on_gamesCombo_currentIndexChanged(int index)
 		ui->movesListWidget->addItem(new QListWidgetItem(QString::fromStdString(it->toStdString())));
 	}
 	ui->boardWidget->setGame(game);
+	ui->boardWidget->setCache(m_data.data().cache());
 }	
 
 void DarkKnight::on_nextBttn_clicked()

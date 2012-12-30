@@ -52,6 +52,7 @@ void Framework::loadConcepts()
 	foreach(ConceptPlugin* c, m_concepts)
 	{
 		c->setId(++m_idEnumerator);
+		c->initWithFramework(this);
 	}
 }
 
@@ -61,6 +62,7 @@ void Framework::loadDataStores()
 	foreach(DataStore* s, m_stores)
 	{
 		s->setId(++m_idEnumerator);
+		s->initWithFramework(this);	
 	}
 }
 
