@@ -136,7 +136,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="EvaluatingGame.h" />
+    <ClInclude Include="EvaluatingGame_test.h" />
     <ClInclude Include="FuzzyGoodPawnVariable_test.h" />
     <ClInclude Include="Primitives_test.h" />
     <ClInclude Include="SimpleCalculations_test.h" />

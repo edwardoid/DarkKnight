@@ -19,6 +19,7 @@ ChessBoard::ChessBoard(QWidget *parent)
 	, m_cache(NULL)
 	, m_tooltipWidget(new TooltipWidget(this))
 {
+	m_tooltipWidget->hide();
 	setMouseTracking(true);
 }
 
