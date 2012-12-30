@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TooltipWidget</class>
+ <widget class="QWidget" name="TooltipWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>344</width>
+    <height>133</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <item>
+    <widget class="QLabel" name="thumbLabel">
+     <property name="font">
+      <font>
+       <pointsize>64</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Z9</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="infoLabel">
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Undefined</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

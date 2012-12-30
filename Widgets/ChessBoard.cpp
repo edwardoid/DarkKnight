@@ -1,6 +1,11 @@
 #include "ChessBoard.h"
+#include "TooltipWidget.h"
+#include "PiecePixmapFactory.h"
 #include <QPainter>
 #include <QPaintEvent>
+#include <QToolTip>
+#include <qxttooltip.h>
+#include <QLabel>
 #include <CEEngine.h>
 #include <Utils.h>
 
@@ -11,7 +16,10 @@ const QColor ChessBoard::blackSquareColor(90, 45, 0);
 ChessBoard::ChessBoard(QWidget *parent)
 	: QWidget(parent)
 	, m_currentMoveIndex(0)
+	, m_cache(NULL)
+	, m_tooltipWidget(new TooltipWidget(this))
 {
+	setMouseTracking(true);
 }
 
 ChessBoard::~ChessBoard()
@@ -52,44 +60,8 @@ void ChessBoard::paintPieces( QPainter& p, const int pieceSize )
 		for(char r = '1'; r <= '8'; ++r, y-= pieceSize)
 		{
 			ChEngn::Piece* piece = table.pieceAtC(c, r);
-			if (!piece || piece->isUnknown()) continue;
-			QString pixmapName = QString(":/pieces/%1_").arg((piece->isWhite() ? "white" : "black"));
-			switch(piece->type())
-			{
-			case ChEngn::pawn:
-				{
-					pixmapName += QString("pawn");
-					break;
-				}
-			case ChEngn::knight:
-				{
-					pixmapName += QString("knight");
-					break;
-				}
-			case ChEngn::bishop:
-				{
-					pixmapName += QString("bishop");
-					break;
-				}
-			case ChEngn::rook:
-				{
-					pixmapName += QString("rook");
-					break;
-				}
-			case ChEngn::queen:
-				{
-					pixmapName += QString("queen");
-					break;
-				}
-			case ChEngn::king:
-				{
-					pixmapName += QString("king");
-					break;
-				}
-			default: { ASSERT(false); }
-			}
-
-			QPixmap pixmap(pixmapName);
+			
+			QPixmap pixmap = PiecePixmapFactory::pixmap(piece);
 			if (pixmap.isNull())
 				continue;
 			
@@ -131,21 +103,21 @@ void ChessBoard::paintNumbers(QPainter &p, const int pieceSize)
                          pieceSize,
                          pieceSize),
                    Qt::AlignCenter,
-                   QChar('A' + c));
+                   QChar('8' - c));
     }
 }
 
 void ChessBoard::paintLetters(QPainter &p, const int pieceSize)
 {
     int y = pieceSize * 8;
-    for(int r = 1; r < 9; ++r)
+    for(int r = 0; r < 8; ++r)
     {
-        p.drawText(QRect(r * pieceSize,
+        p.drawText(QRect(r * pieceSize + pieceSize,
                          y,
                          pieceSize,
                          pieceSize),
                    Qt::AlignCenter,
-                   QChar('0' + r));
+                   QChar('A' + r));
     }
 }
 
@@ -182,4 +154,48 @@ void ChessBoard::setMove( int i )
 {
 	m_currentMoveIndex = i;
 	update();
+}
+
+void ChessBoard::mouseMoveEvent( QMouseEvent *e )
+{
+	if(m_cache != NULL)
+	{
+		const QPoint& p = e->pos();
+		const int boardSize = qMin(height(), width());
+		const int pieceSize = boardSize / 9;
+		int num = p.y() / pieceSize;
+		int letter = p.x() / pieceSize - 1;
+		if (letter > -1 && letter < 8 && num > -1 && num < 8 && m_tables.size() > m_currentMoveIndex)
+		{
+			short col = letter;
+			short row = 7 - num;
+			
+			if(m_cache != NULL)
+			{
+				QList<ConceptCalculationsCache::ID> concepts = m_cache->cachedConcepts();
+				QString text;
+				foreach(ConceptCalculationsCache::ID id, concepts)
+				{
+					CalculationResultForGame* gameResult = m_cache->result(id);
+					const CalculationResultForTable& tableResults = gameResult->tableAt(m_currentMoveIndex);
+					const CalculationResultForSquare& squareResultW = tableResults.squareValue(CalculationResultForTable::Whites,col, row);
+					if(!squareResultW.undefined())
+						text += squareResultW.textValue();
+					const CalculationResultForSquare& squareResultB = tableResults.squareValue(CalculationResultForTable::Blacks,col, row);
+					if(!squareResultB.undefined())
+						text += squareResultB.textValue();
+				}
+				m_tooltipWidget->setText(text);
+			}
+			QPixmap piece = PiecePixmapFactory::pixmap(m_tables[m_currentMoveIndex].pieceAt(col, row));
+			if(piece.isNull())
+				m_tooltipWidget->setSquare(QString("%1%2").arg(QChar('a' + letter)).arg(8 - num));
+			else
+				m_tooltipWidget->setPixmap(piece);
+			QRect r(letter * pieceSize + pieceSize, num * pieceSize, pieceSize, pieceSize);
+			QxtToolTip::show(e->globalPos(), m_tooltipWidget, this, r);
+			return;
+		}
+	}
+	QWidget::mouseMoveEvent(e);
 }

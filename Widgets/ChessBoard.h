@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <PGNGame.h>
 #include <CETable.h>
+#include <ConceptCalculationsCache.h>
 
 namespace ChEngn
 {
@@ -11,6 +12,7 @@ namespace ChEngn
 }
 
 class QPaintEvent;
+class TooltipWidget;
 
 class ChessBoard : public QWidget
 {
@@ -20,6 +22,7 @@ public:
     virtual void paintEvent(QPaintEvent *e);
     virtual ~ChessBoard();
 	void setGame(pgn::Game& game);
+	inline void setCache(ConceptCalculationsCache* cache) { m_cache = cache; }
 signals:
     
 public:
@@ -29,6 +32,8 @@ public:
 	inline bool nextMoveAvailable() const { return ((m_currentMoveIndex + 1) < m_tables.size()) && (m_tables.size() > 0); }
 	inline bool previousMoveAvailable() const { return (m_tables.size() > 0) && (m_currentMoveIndex > 0); }
 	inline int currentMoveIndex() const { return m_currentMoveIndex; }
+protected:
+	virtual void mouseMoveEvent(QMouseEvent *e);
 private:
 	static const QColor whiteSquareColor;
 	static const QColor blackSquareColor;
@@ -38,6 +43,8 @@ private:
     void paintLetters(QPainter& p, const int pieceSize);
 private:
 	QVector<ChEngn::VirtualTable> m_tables;
+	TooltipWidget* m_tooltipWidget;
+	ConceptCalculationsCache* m_cache;
 	int m_currentMoveIndex;
 };
 
