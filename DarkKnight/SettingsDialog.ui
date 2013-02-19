@@ -17,13 +17,8 @@
    <item>
     <widget class="QTabWidget" name="settingsTabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>-1</number>
      </property>
-     <widget class="QWidget" name="generalSettings">
-      <attribute name="title">
-       <string>General</string>
-      </attribute>
-     </widget>
     </widget>
    </item>
    <item>

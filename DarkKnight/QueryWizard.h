@@ -4,21 +4,18 @@
 #include <QWizard>
 #include "QueryResult.h"
 
-namespace Ui {
-	class QueryWizard;
-}
-
 class QListWidgetItem;
 
 class QueryWizard :
-	public QWizard
+	public QWizard,
+	public FrameworkUser
 {
 	Q_OBJECT
 public:
 	explicit QueryWizard(QueryResult* data, QWidget* parent = NULL);
-	virtual ~QueryWizard(void);
+	virtual ~QueryWizard();
 private:
-	Ui::QueryWizard* ui;;
+	void addPages(QueryResult* data);
 };
 
 #endif // QUERYWIZARD_H

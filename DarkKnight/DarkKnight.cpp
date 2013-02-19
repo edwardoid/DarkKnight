@@ -4,6 +4,7 @@
 #include "AuthorsDialog.h"
 #include "AboutDialog.h"
 #include "QueryWizard.h"
+#include "QueryEditor.h"
 #include <QTime>
 #include <PGNGameCollection.h>
 #include <PGNGame.h>
@@ -78,7 +79,8 @@ void DarkKnight::on_actionCheckForUpdates_triggered()
 
 void DarkKnight::on_actionQueryEditor_triggered()
 {
-
+	QueryEditor queryEditor(this);
+	queryEditor.exec();
 }
 
 void DarkKnight::on_actionGameExplorer_triggered()

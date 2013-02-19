@@ -20,6 +20,7 @@ public:
     void readSettings();
 private:
     Ui::SettingsDialog *ui;
+	class ApplicationSettingsPage* m_appSettings;
 };
 
 #endif // SETTINGSDIALOG_H

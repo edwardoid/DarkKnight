@@ -2,6 +2,7 @@
 #include "Framework.h"
 #include "ConceptPlugin.h"
 #include "DataStore.h"
+#include "ApplicationSettingsPage.h"
 #include "ui_SettingsDialog.h"
 #include <SettingsPageBase.h>
 
@@ -11,16 +12,21 @@ SettingsDialog::SettingsDialog(Framework* framework, QWidget *parent) :
 {
     ui->setupUi(this);
     initWithFramework(framework);
+	m_appSettings = new ApplicationSettingsPage;
+	m_appSettings->initWithFramework(framework);
 }
 
 SettingsDialog::~SettingsDialog()
 {
     delete ui;
+	delete m_appSettings;
 }
 
 void SettingsDialog::readSettings()
 {
-    Framework* fw = framework();
+	m_appSettings->readSettings();
+	ui->settingsTabWidget->addTab(m_appSettings, m_appSettings->name());
+	Framework* fw = framework();
     ConceptsList concepts = fw->concepts();
     foreach(ConceptPlugin* c, concepts)
     {
@@ -43,6 +49,7 @@ void SettingsDialog::readSettings()
 
 void SettingsDialog::writeSettings()
 {
+	m_appSettings->writeSettings();
 	Framework* fw = framework();
 	ConceptsList concepts = fw->concepts();
 	foreach(ConceptPlugin* c, concepts)

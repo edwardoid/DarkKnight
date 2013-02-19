@@ -13,9 +13,9 @@ TEST(Fuzzy_Good_Pawn_Linguisitc_Variable_on_initial_table)
 	LinearCharacteristicFunction weakValueCharFunc(Point(0, 1), Point(1, 0));
 	TriangularCharacteristicFunction averageValueCharFunc(0, Point(0.5, 1), 1);
 	LinearCharacteristicFunction strongValueCharFunc(Point(0, 0), Point(1, 1));
-	lingVariable.addValue(LinguisticValue("weak",		&weakValueCharFunc, false));
-	lingVariable.addValue(LinguisticValue("average",	&averageValueCharFunc, false));
-	lingVariable.addValue(LinguisticValue("strong",		&strongValueCharFunc, false));
+	lingVariable.addValue(LinguisticValue("weak",		&weakValueCharFunc));
+	lingVariable.addValue(LinguisticValue("average",	&averageValueCharFunc));
+	lingVariable.addValue(LinguisticValue("strong",		&strongValueCharFunc));
 	ChEngn::VirtualTable table;
 	TableAndPos arg;
 	arg.table = &table;
@@ -39,9 +39,9 @@ TEST(Fuzzy_Good_Pawn_Linguisitc_Variable_on_semi_empty_table)
 	LinearCharacteristicFunction weakValueCharFunc(Point(0, 1), Point(1, 0));
 	TriangularCharacteristicFunction averageValueCharFunc(0, Point(0.5, 1), 1);
 	LinearCharacteristicFunction strongValueCharFunc(Point(0, 0), Point(1, 1));
-	lingVariable.addValue(LinguisticValue("weak",		&weakValueCharFunc, false));
-	lingVariable.addValue(LinguisticValue("average",	&averageValueCharFunc, false));
-	lingVariable.addValue(LinguisticValue("strong",		&strongValueCharFunc, false));
+	lingVariable.addValue(LinguisticValue("weak",		&weakValueCharFunc));
+	lingVariable.addValue(LinguisticValue("average",	&averageValueCharFunc));
+	lingVariable.addValue(LinguisticValue("strong",		&strongValueCharFunc));
 	ChEngn::VirtualTable table;
 	TableAndPos arg;
 	arg.table = &table;

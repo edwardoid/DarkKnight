@@ -47,7 +47,7 @@ void StoreChooseWizardPage::populateDataStores()
 		item->setData(Qt::UserRole, QVariant::fromValue(ds->id()));
 		ui.storesListWidget->addItem(item);
 	}
-	ui.storesListWidget->setCurrentRow(0);
+	//ui.storesListWidget->setCurrentRow(0);
 }
 
 

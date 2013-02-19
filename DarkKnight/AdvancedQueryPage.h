@@ -17,6 +17,8 @@ public:
 	~AdvancedQueryPage();
 public slots:
 	virtual bool isComplete() const;
+private slots:
+	void loadFromFile();
 private:
 	Ui::AdvancedQueryPage* ui;
 };

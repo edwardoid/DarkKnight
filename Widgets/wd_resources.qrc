@@ -1,0 +1,19 @@
+<RCC>
+  <qresource prefix="pieces">
+    <file alias="black_bishop">resources/black_bishop.png</file>
+    <file alias="black_king">resources/black_king.png</file>
+    <file alias="black_knight">resources/black_knight.png</file>
+    <file alias="black_pawn">resources/black_pawn.png</file>
+    <file alias="black_queen">resources/black_queen.png</file>
+    <file alias="black_rook">resources/black_rook.png</file>
+    <file alias="white_bishop">resources/white_bishop.png</file>
+    <file alias="white_king">resources/white_king.png</file>
+    <file alias="white_knight">resources/white_knight.png</file>
+    <file alias="white_pawn">resources/white_pawn.png</file>
+    <file alias="white_queen">resources/white_queen.png</file>
+    <file alias="white_rook">resources/white_rook.png</file>
+  </qresource>
+  <qresource prefix="textures">
+    <file alias="sidebar_texture">resources/sidebar_texture.png</file>
+  </qresource>
+</RCC>

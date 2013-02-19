@@ -75,7 +75,7 @@ TEST(evaluatingGame)
 					<< ((moveNum % 2 == 0) ? "(whites)" : "(blacks)")
 					<< std::endl;
 		printTableAndMove(engine, moves, ++moveNum);
-		FAILED(-1);
+		CHECK_EQUAL(0, -1);
 	}
 }
 

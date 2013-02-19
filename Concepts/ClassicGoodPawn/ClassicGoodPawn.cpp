@@ -77,6 +77,7 @@ CalculationResultForSquare ClassicGoodPawn::calculateForPawn(const pgn::Square& 
 	const char rowMax = piece->isWhite() ? 8 :  0;
 		  char row = square.row();
 	const char col = square.col();
+	unsigned char count = 0;
 	for(row += rowInc; row != rowMax; row += rowInc)
 	{
 		const ChEngn::Piece* left = table.pieceAtC(col -1, row);
