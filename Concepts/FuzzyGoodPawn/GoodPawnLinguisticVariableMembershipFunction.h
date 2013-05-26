@@ -16,7 +16,7 @@ struct TableAndPos
 		this->column = o.column;
 		return *this;
 	}
-	ChEngn::VirtualTable* table;
+	const ChEngn::VirtualTable* table;
 	short row;
 	short column;
 };

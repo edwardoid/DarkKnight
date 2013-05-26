@@ -22,6 +22,8 @@ public:
 	virtual const ListofLinguisticValues& availableValues() const;
 	virtual CalculationResultForGame calculate(const pgn::Game& game, const Color color) const;
 private:
+	CalculationResultForTable	calculateForTable(const ChEngn::VirtualTable& table, const Color color) const;
+private:
 	LinguisticVariable<struct TableAndPos> m_lingVariable;
 };
 
