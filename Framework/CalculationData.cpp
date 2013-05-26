@@ -13,7 +13,7 @@ CalculationData::~CalculationData()
 {
 }
 
-bool CalculationData::calculate( const char* conceptName, const char* requieredValue ) const
+bool CalculationData::calculate( const char* conceptName, const char* requieredValue, ChEngn::piece_color color ) const
 {
 	Plugin::ID conceptId = 0;
 	ConceptPlugin* plg = NULL;
@@ -28,13 +28,16 @@ bool CalculationData::calculate( const char* conceptName, const char* requieredV
 	if (conceptId == 0 || plg == NULL) return false;
 
 	CalculationResultForGame* result = m_conceptToResult.result(conceptId);
+
+	ConceptPlugin::Color c = color == ChEngn::white ? ConceptPlugin::Whites : ConceptPlugin::Blacks;
+
 	if(NULL == result)
 	{
-		CalculationResultForGame calcResult = plg->calculate(*game(), ConceptPlugin::Whites);
+		CalculationResultForGame calcResult = plg->calculate(*game(), c);
 		m_conceptToResult.add(conceptId, calcResult);
 		result = &calcResult;
 	}
-	return result->textValue().compare(requieredValue, Qt::CaseInsensitive);
+	return result->hasValue(requieredValue);
 }
 
 void CalculationData::addGame( const pgn::Game* game )
