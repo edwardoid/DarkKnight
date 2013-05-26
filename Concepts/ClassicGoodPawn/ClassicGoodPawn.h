@@ -21,7 +21,7 @@ public:
 	virtual const ListofLinguisticValues& availableValues() const;
 	virtual CalculationResultForGame calculate(const pgn::Game& game, const Color color) const;
 private:
-	CalculationResultForTable calculateForTable(const ChEngn::VirtualTable& table) const;
+	CalculationResultForTable calculateForTable(const ChEngn::VirtualTable& table, const Color color) const;
 	CalculationResultForSquare calculateForPawn(const pgn::Square& square, const ChEngn::VirtualTable& table) const;
 private:
 	ListofLinguisticValues m_availableValues;
