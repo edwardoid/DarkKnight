@@ -14,7 +14,6 @@ public:
 	virtual ~QueryEditor();
 private:
 	Ui::QueryEditor* ui;
-	class CGSQLSyntaxHighlighter* m_highlighter;
 };
 
 #endif // QUERY_EDITOR_H
