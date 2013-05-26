@@ -49,6 +49,10 @@ void CalculationResultForTable::setSquareValue(const CalculationResultForTable::
 	{
 		square = value;
 	}
+	if(!value.textValue().isEmpty() && !m_textValues.contains(value.textValue()))
+	{
+		m_textValues << value.textValue();
+	}
 }
 
 const CalculationResultForSquare& CalculationResultForTable::squareValue(const CalculationResultForTable::Color color,
@@ -61,4 +65,9 @@ const CalculationResultForSquare& CalculationResultForTable::squareValue(const C
 
 CalculationResultForTable::~CalculationResultForTable()
 {
+}
+
+const QStringList CalculationResultForTable::textValues() const
+{
+	return m_textValues;
 }

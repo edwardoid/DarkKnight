@@ -17,7 +17,7 @@ CalculationResultForGame::CalculationResultForGame(const CalculationResultForGam
 
 CalculationResultForGame& CalculationResultForGame::operator=(const CalculationResultForGame& other)
 {
-	m_textValue = other.m_textValue;
+	m_textValues = other.m_textValues;
 	m_comment = other.m_comment;
 	m_internalValue = other.m_internalValue;
 	unsigned int tablesCount = other.m_tables.size();
@@ -26,14 +26,14 @@ CalculationResultForGame& CalculationResultForGame::operator=(const CalculationR
 	return *this;
 }
 
-void CalculationResultForGame::setTextValue(const QString textValue)
+bool CalculationResultForGame::hasValue(const QString textValue) const
 {
-	m_textValue = textValue;
+	return m_textValues.contains(textValue);
 }
 
-QString CalculationResultForGame::textValue() const
+QStringList CalculationResultForGame::textValues() const
 {
-	return m_textValue;
+	return m_textValues;
 }
 
 void CalculationResultForGame::setComment(const QString comment)
@@ -61,6 +61,12 @@ void CalculationResultForGame::addTable(const CalculationResultForTable table)
 {
 	m_tables << table;
 	m_undefined = false;
+	QStringList tableValues = table.textValues();
+	foreach(QString tableValue, tableValues)
+	{
+		if(!hasValue(tableValue))
+			m_textValues.append(tableValue);
+	}
 }
 
 const CalculationResultForTable& CalculationResultForGame::tableAt(const unsigned int i) const

@@ -4,6 +4,7 @@
 #include "InterfacesGlobal.h"
 #include "CalculationResultForTable.h"
 #include "CalculationResultForSquare.h"
+#include <QStringList>
 
 class EXPORT_INTERFACES CalculationResultForGame
 {
@@ -14,8 +15,8 @@ public:
 	CalculationResultForGame(const CalculationResultForGame& other);
 	CalculationResultForGame& CalculationResultForGame::operator=(const CalculationResultForGame& other);
 	~CalculationResultForGame();
-	void setTextValue(const QString textValue);
-	QString textValue() const;
+	bool hasValue(const QString testValue) const;
+	QStringList textValues() const;
 	void setComment(const QString comment);
 	QString comment() const;
 	void setInternalValue(const InternalValue internalValue);
@@ -25,7 +26,7 @@ public:
 	const CalculationResultForTable& tableAt(const unsigned int) const;
 	inline int size() const { return m_tables.size(); }
 private:
-	QString m_textValue;
+	QStringList m_textValues;
 	QString m_comment;
 	InternalValue m_internalValue;
 	bool m_undefined;

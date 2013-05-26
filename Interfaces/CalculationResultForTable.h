@@ -4,6 +4,7 @@
 #include "InterfacesGlobal.h"
 #include "CalculationResultForSquare.h"
 #include <QList>
+#include <QStringList>
 
 class EXPORT_INTERFACES CalculationResultForTable
 {
@@ -13,7 +14,7 @@ public:
 	typedef enum
 	{
 		Any = 0,
-		Whites = Any,
+		Whites,
 		Blacks
 	} Color;
 
@@ -23,9 +24,11 @@ public:
 	~CalculationResultForTable();
 	void setSquareValue(const Color color, const short column, const short row, const CalculationResultForSquare value);
 	const CalculationResultForSquare& squareValue(const Color color, const short column, const short row) const;
+	const QStringList textValues() const;
 private:
 	ResultTable m_whitesTable;
 	ResultTable m_blacksTable;
+	QStringList m_textValues;
 };
 
 typedef QList<CalculationResultForTable> CalculationResultTablesList;
