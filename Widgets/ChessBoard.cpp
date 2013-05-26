@@ -8,6 +8,8 @@
 #include <QLabel>
 #include <CEEngine.h>
 #include <Utils.h>
+#include <Framework.h>
+#include <ConceptPlugin.h>
 
 const QColor ChessBoard::whiteSquareColor(255, 250, 230);
 const QColor ChessBoard::blackSquareColor(90, 45, 0);
@@ -174,19 +176,26 @@ void ChessBoard::mouseMoveEvent( QMouseEvent *e )
 			if(m_cache != NULL)
 			{
 				QList<ConceptCalculationsCache::ID> concepts = m_cache->cachedConcepts();
-				QString text;
+				QStringList values;
 				foreach(ConceptCalculationsCache::ID id, concepts)
 				{
+					const QString conceptName = Framework::instance()->conceptById(id)->name();
 					CalculationResultForGame* gameResult = m_cache->result(id);
+					if(gameResult->size() <= m_currentMoveIndex)
+						continue;
 					const CalculationResultForTable& tableResults = gameResult->tableAt(m_currentMoveIndex);
 					const CalculationResultForSquare& squareResultW = tableResults.squareValue(CalculationResultForTable::Whites,col, row);
-					if(!squareResultW.undefined())
-						text += squareResultW.textValue();
+					if(!squareResultW.undefined() && !squareResultW.textValue().isEmpty())
+					{
+						values << QString("<b>%1</b>: %2").arg(conceptName, squareResultW.textValue());
+						continue;
+					}
+					
 					const CalculationResultForSquare& squareResultB = tableResults.squareValue(CalculationResultForTable::Blacks,col, row);
-					if(!squareResultB.undefined())
-						text += squareResultB.textValue();
+					if(!squareResultB.undefined() && !squareResultB.textValue().isEmpty())
+						values << QString("<b>%1</b>: %2").arg(conceptName, squareResultB.textValue());
 				}
-				m_tooltipWidget->setText(text);
+				m_tooltipWidget->setText(values.join("</p>"));
 			}
 			QPixmap piece = PiecePixmapFactory::pixmap(m_tables[m_currentMoveIndex].pieceAt(col, row));
 			if(piece.isNull())
