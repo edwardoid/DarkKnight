@@ -73,3 +73,26 @@ const CalculationResultForTable& CalculationResultForGame::tableAt(const unsigne
 {
 	return m_tables[i];
 }
+
+void CalculationResultForGame::merge( const CalculationResultForGame& src )
+{
+	int minCount = std::min(m_tables.size(), src.m_tables.size());
+	for(int i =0; i < minCount; ++i)
+	{
+		m_tables[i].merge(src.m_tables[i]);
+	}
+	if (minCount > 0)
+	{
+		m_undefined = false;
+	}
+}
+
+bool CalculationResultForGame::hasValuesFor( CalculationResultForTable::Color color ) const
+{
+	for(int i =0; i < m_tables.size(); ++i)
+	{
+		if(m_tables[i].hasValuesFor(color))
+			return true;
+	}
+	return false;
+}

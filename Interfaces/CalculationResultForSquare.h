@@ -21,6 +21,7 @@ public:
 	void setInternalValue(const InternalValue internalValue);
 	InternalValue internalValue() const;
 	inline bool undefined() const { return m_undefined; }
+	void merge(const CalculationResultForSquare& src);
 private:
 	QString m_textValue;
 	QString m_comment;

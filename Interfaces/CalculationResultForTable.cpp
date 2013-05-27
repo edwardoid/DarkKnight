@@ -60,7 +60,9 @@ const CalculationResultForSquare& CalculationResultForTable::squareValue(const C
 																   const short row) const
 {
 	if (column >= 8 || row >= 8 || column < 0 || row < 0) return CalculationResultForSquare();
-	return ((color != Blacks) ? m_whitesTable[row][column] : m_blacksTable[row][column]);
+	if(color == Blacks)
+		return m_blacksTable[row][column];
+	return m_whitesTable[row][column];
 }
 
 CalculationResultForTable::~CalculationResultForTable()
@@ -70,4 +72,43 @@ CalculationResultForTable::~CalculationResultForTable()
 const QStringList CalculationResultForTable::textValues() const
 {
 	return m_textValues;
+}
+
+void CalculationResultForTable::merge( const CalculationResultForTable& src )
+{
+	for (int row = 0; row < 8; ++row)
+	{
+		for(int column = 0; column < 8; ++column)
+		{
+			m_whitesTable[row][column].merge(src.m_whitesTable[row][column]);
+			QString strWhites = src.m_whitesTable[row][column].textValue();
+			m_blacksTable[row][column].merge(src.m_blacksTable[row][column]);
+			QString strBlacks = src.m_blacksTable[row][column].textValue();
+			if(!m_textValues.contains(strWhites))
+				m_textValues << strWhites;
+			if(!m_textValues.contains(strBlacks))
+				m_textValues << strBlacks;
+		}
+	}
+}
+
+bool CalculationResultForTable::hasValuesFor( Color color ) const
+{
+	for (int row = 0; row < 8; ++row)
+	{
+		for(int column = 0; column < 8; ++column)
+		{
+			if(color == CalculationResultForTable::Whites)
+			{
+				if(m_whitesTable[row][column].internalValue() > 0)
+					return true;
+			}
+			else
+			{
+				if(m_blacksTable[row][column].internalValue() > 0)
+					return true;
+			}
+		}
+	}
+	return false;
 }

@@ -25,6 +25,8 @@ public:
 	void setSquareValue(const Color color, const short column, const short row, const CalculationResultForSquare value);
 	const CalculationResultForSquare& squareValue(const Color color, const short column, const short row) const;
 	const QStringList textValues() const;
+	void merge(const CalculationResultForTable& src);
+	bool hasValuesFor(CalculationResultForTable::Color color) const;
 private:
 	ResultTable m_whitesTable;
 	ResultTable m_blacksTable;

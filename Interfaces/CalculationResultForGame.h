@@ -24,7 +24,9 @@ public:
 	bool undefined() const;
 	void addTable(const CalculationResultForTable table);
 	const CalculationResultForTable& tableAt(const unsigned int) const;
+	void merge(const CalculationResultForGame& src);
 	inline int size() const { return m_tables.size(); }
+	bool hasValuesFor(CalculationResultForTable::Color color) const;
 private:
 	QStringList m_textValues;
 	QString m_comment;

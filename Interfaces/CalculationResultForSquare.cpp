@@ -61,3 +61,18 @@ CalculationResultForSquare::InternalValue CalculationResultForSquare::internalVa
 {
 	return m_internalValue;
 }
+
+void CalculationResultForSquare::merge( const CalculationResultForSquare& src )
+{
+	m_internalValue = std::max(m_internalValue, src.m_internalValue);
+	if(src.textValue().size() > 0)
+	{
+		if(m_textValue.size() > 0)
+			m_textValue.append("; ");
+		m_textValue.append(src.m_textValue);
+	}
+	if(m_internalValue > 0)
+	{
+		m_undefined = false;
+	}
+}
