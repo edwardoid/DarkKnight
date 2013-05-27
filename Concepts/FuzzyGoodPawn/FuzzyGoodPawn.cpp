@@ -7,7 +7,7 @@
 #include <Utils.h>
 #include <CommonPrimitives.h>
 
-using namespace ChEngn;
+using namespace CE;
 
 FuzyGoodPawn::FuzyGoodPawn()
 	: m_lingVariable(new GoodPawnLinguisticVariableMembershipFunction())
@@ -57,13 +57,13 @@ CalculationResultForGame FuzyGoodPawn::calculate( const pgn::Game& game, const C
 CalculationResultForTable FuzyGoodPawn::calculateForTable( const VirtualTable& table, const Color color ) const
 {
 	const bool whites = (color == ConceptPlugin::Whites);
-	const ListOfPieces pieces = Primitives::pieces(&table, ChEngn::pawn, &whites);
+	const ListOfPieces pieces = Primitives::pieces(&table, CE::pawn, &whites);
 	ListOfPieces::const_iterator itPiece = pieces.cbegin();
 	CalculationResultForTable::Color resColor = whites ? CalculationResultForTable::Whites : CalculationResultForTable::Blacks;
 	CalculationResultForTable tblResult;
 	for(; itPiece != pieces.cend(); ++itPiece)
 	{
-		TableAndPos arg;
+		Primitives::TableAndPos arg;
 		arg.table = &table;
 		arg.column = itPiece->column();
 		arg.row = itPiece->row();

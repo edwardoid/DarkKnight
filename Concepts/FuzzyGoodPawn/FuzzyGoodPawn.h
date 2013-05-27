@@ -8,6 +8,7 @@
 #include <PGNSquare.h>
 #include <LinguisticVariable.h>
 #include <QtCore/QtPlugin>
+#include <CommonPrimitives.h>
 
 class FuzyGoodPawn: public ConceptPlugin
 {
@@ -22,9 +23,9 @@ public:
 	virtual const ListofLinguisticValues& availableValues() const;
 	virtual CalculationResultForGame calculate(const pgn::Game& game, const Color color) const;
 private:
-	CalculationResultForTable	calculateForTable(const ChEngn::VirtualTable& table, const Color color) const;
+	CalculationResultForTable	calculateForTable(const CE::VirtualTable& table, const Color color) const;
 private:
-	LinguisticVariable<struct TableAndPos> m_lingVariable;
+	LinguisticVariable<Primitives::TableAndPos> m_lingVariable;
 };
 
 #endif // FUZZYGOODPAWN_H

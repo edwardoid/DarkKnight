@@ -53,7 +53,7 @@ void ChessBoard::paintEvent(QPaintEvent *)
 
 void ChessBoard::paintPieces( QPainter& p, const int pieceSize )
 {
-	ChEngn::VirtualTable table = (m_currentMoveIndex < m_tables.size() ? m_tables[m_currentMoveIndex] : ChEngn::VirtualTable());
+	CE::VirtualTable table = (m_currentMoveIndex < m_tables.size() ? m_tables[m_currentMoveIndex] : CE::VirtualTable());
 	int x = 0;
 	int y = 0;
 	for(char c = 'a'; c <= 'h'; ++c)
@@ -62,7 +62,7 @@ void ChessBoard::paintPieces( QPainter& p, const int pieceSize )
 		y = 7 * pieceSize;
 		for(char r = '1'; r <= '8'; ++r, y-= pieceSize)
 		{
-			ChEngn::Piece* piece = table.pieceAtC(c, r);
+			CE::Piece* piece = table.pieceAtC(c, r);
 			
 			QPixmap pixmap = PiecePixmapFactory::pixmap(piece);
 			if (pixmap.isNull())
@@ -127,7 +127,7 @@ void ChessBoard::paintLetters(QPainter &p, const int pieceSize)
 void ChessBoard::setGame( pgn::Game& game )
 {
 	m_currentMoveIndex = 0;
-	ChEngn::Engine engine(game);
+	CE::Engine engine(game);
 	do
 	{
 		m_tables.push_back(engine.getVirtualTable());

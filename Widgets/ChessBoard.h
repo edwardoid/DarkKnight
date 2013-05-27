@@ -6,7 +6,7 @@
 #include <CETable.h>
 #include <ConceptCalculationsCache.h>
 
-namespace ChEngn
+namespace CE
 {
 	class Engine;
 }
@@ -42,7 +42,7 @@ private:
     void paintNumbers(QPainter& p, const int pieceSize);
     void paintLetters(QPainter& p, const int pieceSize);
 private:
-	QVector<ChEngn::VirtualTable> m_tables;
+	QVector<CE::VirtualTable> m_tables;
 	TooltipWidget* m_tooltipWidget;
 	ConceptCalculationsCache* m_cache;
 	int m_currentMoveIndex;

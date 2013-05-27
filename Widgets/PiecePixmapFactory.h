@@ -8,38 +8,38 @@
 class PiecePixmapFactory
 {
 public:
-	static inline QPixmap pixmap(ChEngn::Piece* piece)
+	static inline QPixmap pixmap(CE::Piece* piece)
 	{
 		if (!piece || piece->isUnknown()) return QPixmap();
 		QString pixmapName = QString(":/pieces/%1_").arg((piece->isWhite() ? "white" : "black"));
 		switch(piece->type())
 		{
-		case ChEngn::pawn:
+		case CE::pawn:
 			{
 				pixmapName += QString("pawn");
 				break;
 			}
-		case ChEngn::knight:
+		case CE::knight:
 			{
 				pixmapName += QString("knight");
 				break;
 			}
-		case ChEngn::bishop:
+		case CE::bishop:
 			{
 				pixmapName += QString("bishop");
 				break;
 			}
-		case ChEngn::rook:
+		case CE::rook:
 			{
 				pixmapName += QString("rook");
 				break;
 			}
-		case ChEngn::queen:
+		case CE::queen:
 			{
 				pixmapName += QString("queen");
 				break;
 			}
-		case ChEngn::king:
+		case CE::king:
 			{
 				pixmapName += QString("king");
 				break;

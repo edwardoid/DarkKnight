@@ -31,7 +31,7 @@
 43.Qd2 Ke7 44.Qe3 Qg5 45.Qg3 f4 46.Qxg5+ hxg5 47.Bxe4 Kd6 48.Kg2 Ke5 49.Bg6 Kd4 50.Bh5 Bf5 51.Bd1 a5 52.a4 Be4+ 53.Kh2 Kd3 54.h4 gxh4 55.Kh3 f3 56.Kg4 h3 \
 57.Kxh3 Kd2  0-1" 
 
-static void printTableAndMove(ChEngn::Engine& engine, pgn::MoveList moves, int moveNum)
+static void printTableAndMove(CE::Engine& engine, pgn::MoveList moves, int moveNum)
 {
 	std::cout	<< ((moveNum % 2 == 0) ? "(whites)" : "(blacks)")
 				<< "\nTable: \n"
@@ -49,7 +49,7 @@ TEST(evaluatingGame)
 	pgn::GameCollection games;
 	ss >> games;
 	CHECK_EQUAL(1, games.size());
-	ChEngn::Engine engine(*games.begin());
+	CE::Engine engine(*games.begin());
 
 	int moveNum = 0;
 	pgn::MoveList& moves = *engine.moves();
@@ -64,7 +64,7 @@ TEST(evaluatingGame)
 #endif
 	}
 	}
-	catch(ChEngn::BadMove* e)
+	catch(CE::BadMove* e)
 	{
 		std::cerr << e->what() << std::endl;
 	}

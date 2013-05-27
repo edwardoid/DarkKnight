@@ -13,7 +13,7 @@ CalculationData::~CalculationData()
 {
 }
 
-bool CalculationData::calculate( const char* conceptName, const char* requieredValue, ChEngn::piece_color color ) const
+bool CalculationData::calculate( const char* conceptName, const char* requieredValue, CE::piece_color color ) const
 {
 	Plugin::ID conceptId = 0;
 	ConceptPlugin* plg = NULL;
@@ -29,7 +29,7 @@ bool CalculationData::calculate( const char* conceptName, const char* requieredV
 
 	CalculationResultForGame* result = m_conceptToResult.result(conceptId);
 
-	ConceptPlugin::Color c = color == ChEngn::white ? ConceptPlugin::Whites : ConceptPlugin::Blacks;
+	ConceptPlugin::Color c = color == CE::white ? ConceptPlugin::Whites : ConceptPlugin::Blacks;
 
 	if(NULL == result)
 	{

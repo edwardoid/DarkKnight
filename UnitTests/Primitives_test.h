@@ -9,8 +9,8 @@
 
 TEST(piecesAttacs_on_e4)
 {
-	ChEngn::Table tbl; // Initial state
-	ChEngn::ListOfPieces res = Primitives::piecesAttacs(tbl, 4, 3, NULL);
+	CE::Table tbl; // Initial state
+	CE::ListOfPieces res = Primitives::piecesAttacs(tbl, 4, 3, NULL);
 	bool whites = true;
 	CHECK_EQUAL(0, res.size());
 	res = Primitives::piecesAttacs(tbl, 4, 3, &whites);
@@ -22,8 +22,8 @@ TEST(piecesAttacs_on_e4)
 
 TEST(piecesAttacs_on_c3)
 {
-	ChEngn::Table tbl; // Initial state
-	ChEngn::ListOfPieces res = Primitives::piecesAttacs(tbl, 2, 2, NULL);
+	CE::Table tbl; // Initial state
+	CE::ListOfPieces res = Primitives::piecesAttacs(tbl, 2, 2, NULL);
 	bool whites = true;
 	CHECK_EQUAL(3, res.size());
 	res = Primitives::piecesAttacs(tbl, 2, 2, &whites);
@@ -36,13 +36,13 @@ TEST(piecesAttacs_on_c3)
 
 TEST(piecesCount_on_initial_table)
 {
-	ChEngn::VirtualTable tbl;
-	CHECK_EQUAL(32, Primitives::piecesCount(&tbl, ChEngn::unknown, NULL));
+	CE::VirtualTable tbl;
+	CHECK_EQUAL(32, Primitives::piecesCount(&tbl, CE::unknown, NULL));
 	bool whites = true;
-	CHECK_EQUAL(8, Primitives::piecesCount(&tbl, ChEngn::pawn, &whites));
+	CHECK_EQUAL(8, Primitives::piecesCount(&tbl, CE::pawn, &whites));
 	whites = false;
-	CHECK_EQUAL(2, Primitives::piecesCount(&tbl, ChEngn::bishop, &whites));
-	CHECK_EQUAL(1, Primitives::piecesCount(&tbl, ChEngn::queen, &whites));
+	CHECK_EQUAL(2, Primitives::piecesCount(&tbl, CE::bishop, &whites));
+	CHECK_EQUAL(1, Primitives::piecesCount(&tbl, CE::queen, &whites));
 }
 
 #endif // UT_PRIMITIVES_H
