@@ -4,6 +4,7 @@
 #include <RootNode.h>
 #include <QueryParser.h>
 #include <CalculationData.h>
+#include <QProgressDialog>
 #include <QtCore>
 
 QueryFinishWizardPage::QueryFinishWizardPage(QWidget *parent)
@@ -45,14 +46,26 @@ void QueryFinishWizardPage::initializePage()
 		return;
 	}
 	setCurrentAction(tr("Loaded %1 games. Looking for concepts in its...").arg(loadedGames.size()));
+	QProgressDialog* progressDialog = new QProgressDialog("Searching for concepts", "Cancel", 0, loadedGames.size());
+	progressDialog->setWindowModality(Qt::WindowModal);
+	progressDialog->setValue(0);
+	int progress = 0;
 	for(pgn::GameCollection::iterator it = loadedGames.begin();
 		it != loadedGames.end();
 		++it)
 	{
+		progressDialog->show();
 		m_result->data().addGame(&(*it));
 		if(root->body()->accept(&(m_result->data())))
 			m_result->games().insert(*it);
+		progressDialog->setValue(progress);
+		++progress;
 	}
+	progressDialog->setValue(100);
+	progressDialog->setAutoClose(true);
+	progressDialog->reset();
+	progressDialog->show();
+	progressDialog->deleteLater();
 	ui.progressBar->setValue(100);
 }
 

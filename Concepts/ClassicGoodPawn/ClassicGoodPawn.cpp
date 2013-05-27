@@ -39,7 +39,7 @@ const ListofLinguisticValues& ClassicGoodPawn::availableValues() const
 CalculationResultForGame ClassicGoodPawn::calculate( const pgn::Game& game, const Color color ) const
 {
 	CalculationResultForGame res;
-	ChEngn::Engine engine(game);
+	CE::Engine engine(game);
 	while(engine.makeNextHalfMove())
 	{
 		res.addTable(calculateForTable(engine.getVirtualTable(), color));
@@ -47,14 +47,14 @@ CalculationResultForGame ClassicGoodPawn::calculate( const pgn::Game& game, cons
 	return res;
 }
 
-CalculationResultForTable ClassicGoodPawn::calculateForTable(const ChEngn::VirtualTable&  table, const Color color) const
+CalculationResultForTable ClassicGoodPawn::calculateForTable(const CE::VirtualTable&  table, const Color color) const
 {
 	CalculationResultForTable res;
 	const bool whites = (color == ConceptPlugin::Whites);
-	ChEngn::ListOfPieces pieces = Primitives::pieces(&table, ChEngn::pawn, &whites);
+	CE::ListOfPieces pieces = Primitives::pieces(&table, CE::pawn, &whites);
 
 
-	ChEngn::ListOfPieces::const_iterator itPiece = pieces.cbegin();
+	CE::ListOfPieces::const_iterator itPiece = pieces.cbegin();
 	CalculationResultForTable::Color c = color == ConceptPlugin::Whites ? CalculationResultForTable::Whites : CalculationResultForTable::Blacks;
 	for (; itPiece != pieces.cend(); ++itPiece)
 	{
@@ -63,13 +63,13 @@ CalculationResultForTable ClassicGoodPawn::calculateForTable(const ChEngn::Virtu
 	return res;
 }
 
-CalculationResultForSquare ClassicGoodPawn::calculateForPawn(const pgn::Square& square, const ChEngn::VirtualTable& table) const
+CalculationResultForSquare ClassicGoodPawn::calculateForPawn(const pgn::Square& square, const CE::VirtualTable& table) const
 {
 	CalculationResultForSquare res;
 	res.setInternalValue(.5);
 	res.setTextValue("strong");
-	const ChEngn::Piece* piece = table.pieceAt(square.col(), square.row());
-	ASSERT(piece->type() == ChEngn::pawn);
+	const CE::Piece* piece = table.pieceAt(square.col(), square.row());
+	ASSERT(piece->type() == CE::pawn);
 	const char rowInc = piece->isWhite() ? 1 : -1;
 	const char rowMax = piece->isWhite() ? 8 :  0;
 		  char row = square.row();
@@ -77,9 +77,9 @@ CalculationResultForSquare ClassicGoodPawn::calculateForPawn(const pgn::Square& 
 	unsigned char count = 0;
 	for(row += rowInc; row != rowMax; row += rowInc)
 	{
-		const ChEngn::Piece* left = table.pieceAt(col -1, row);
-		const ChEngn::Piece* right = table.pieceAt(col +1, row);
-		const ChEngn::Piece* center = table.pieceAt(col, row);
+		const CE::Piece* left = table.pieceAt(col -1, row);
+		const CE::Piece* right = table.pieceAt(col +1, row);
+		const CE::Piece* center = table.pieceAt(col, row);
 		if (!left || !right || !center) continue;
 		if((left->color() != piece->color()) ||
 		   (right->color() != piece->color()) ||

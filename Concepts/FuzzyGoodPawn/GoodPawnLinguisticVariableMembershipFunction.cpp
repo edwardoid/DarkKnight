@@ -18,16 +18,16 @@ GoodPawnLinguisticVariableMembershipFunction::~GoodPawnLinguisticVariableMembers
 	, where n1, n2, n3 and n4 are various coefficients.
 	See Suren's work for more information.
 */
-Real GoodPawnLinguisticVariableMembershipFunction::operator()()
+Real GoodPawnLinguisticVariableMembershipFunction::operator() () const
 {
-	ChEngn::Piece* piece = arg().table->pieceAt(arg().column, arg().row);
+	CE::Piece* piece = arg().table->pieceAt(arg().column, arg().row);
 	if(piece == NULL)
 		return NotANumber;
-	if(piece->type() != ChEngn::pawn)
+	if(piece->type() != CE::pawn)
 		return NotANumber;
 	bool whites = piece->isWhite();
-	double enemyPiecesCount = Primitives::piecesCount(arg().table, ChEngn::unknown, &whites) - 
-							  Primitives::piecesCount(arg().table, ChEngn::pawn, &whites) - 1;
+	double enemyPiecesCount = Primitives::piecesCount(arg().table, CE::unknown, &whites) - 
+							  Primitives::piecesCount(arg().table, CE::pawn, &whites) - 1;
 	const double n1 = 1. - enemyPiecesCount / 8.;
 
 	double squaresCountToGoalWithoutGoalSquare = (whites ? (6 - arg().row) : (arg().row - 1));
@@ -43,7 +43,7 @@ Real GoodPawnLinguisticVariableMembershipFunction::operator()()
 	{
 		if(Primitives::piecesAttacs(*(arg().table), arg().column, r, &enemy).size() > 0)
 			squaresCountToGoalNotUnderAttack -= 1.;
-		ChEngn::Piece *p = arg().table->pieceAt(arg().column, r);
+		CE::Piece *p = arg().table->pieceAt(arg().column, r);
 		//ASSERT(p != NULL);
 		if(!p->isUnknown())
 		{
