@@ -1,23 +1,41 @@
 #include "SimpleCalculations.h"
 #include <limits>
+#include <assert.h>
 
 
 namespace Primitives {
 
-short standartCost(const ChEngn::Piece* piece )
+short standartCost(const CE::Piece* piece )
 {
-	switch(piece->type())
+	return standartCost(piece->type());
+}
+
+std::vector<short> standartCost( const CE::ListOfPieces& pieces )
+{
+	std::vector<short> res;
+	for (	CE::ListOfPieces::const_iterator it = pieces.begin();
+			it != pieces.end();
+			++it)
 	{
-	case ChEngn::king:
+		res.push_back(standartCost(&(*it)));
+	}
+	return res;
+}
+
+short standartCost( const CE::piece_type type)
+{
+	switch(type)
+	{
+	case CE::king:
 		return std::numeric_limits<short>::max(); // infinite
-	case ChEngn::queen:
+	case CE::queen:
 		return 8;
-	case ChEngn::rook:
+	case CE::rook:
 		return 6;
-	case ChEngn::knight:
-	case ChEngn::bishop:
+	case CE::knight:
+	case CE::bishop:
 		return 4;
-	case ChEngn::pawn:
+	case CE::pawn:
 		return 1;
 	default:
 		return -1;
@@ -25,14 +43,43 @@ short standartCost(const ChEngn::Piece* piece )
 	return -1;
 }
 
-std::vector<short> standartCost( const ChEngn::ListOfPieces& pieces )
+CE::VirtualTable diff( const CE::VirtualTable& first, const CE::VirtualTable& second )
 {
-	std::vector<short> res;
-	for (	ChEngn::ListOfPieces::const_iterator it = pieces.begin();
-			it != pieces.end();
-			++it)
+	CE::VirtualTable res;
+	for(int r = 0; r < 8; ++r)
 	{
-		res.push_back(standartCost(&(*it)));
+		for(int c = 0; c < 8; ++c)
+		{
+			const CE::Piece* f = first.pieceAt(c, r);
+			const CE::Piece* s = second.pieceAt(c, r);
+			assert(f != NULL && s != NULL);
+			if(*f != *s)
+			{
+				(*res.pieceAt(c, r)) = *s;
+			}
+		}
+	}
+	return res;
+}
+
+std::list<CE::PairOfPieces> changes( const CE::VirtualTable& prev, const CE::VirtualTable& now )
+{
+	std::list<std::pair<CE::PieceEx, CE::PieceEx> > res;
+	for(int r = 0; r < 8; ++r)
+	{
+		for(int c = 0; c < 8; ++c)
+		{
+			const CE::Piece* p = prev.pieceAt(c, r);
+			const CE::Piece* n = now.pieceAt(c, r);
+			assert(p != NULL && n != NULL);
+			if(*p != *n)
+			{
+				CE::PairOfPieces change;
+				change.first = CE::PieceEx(*p, r, c);
+				change.second = CE::PieceEx(*n, r, c);
+				res.push_back(change);
+			}
+		}
 	}
 	return res;
 }
